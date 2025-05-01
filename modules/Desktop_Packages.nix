@@ -22,7 +22,6 @@
     obs-studio
     prismlauncher #........... minecraft
     #protonvpn-gui
-    qpwgraph #................ pipewire manager based on QT
     slack
     telegram-desktop
    #tg #...................... terminal client for telegram

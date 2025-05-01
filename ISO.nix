@@ -1,8 +1,8 @@
 # Build without flakes:
-# 	nix build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
+# 	nix build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=ISO.nix
 #
 # Build without flakes | nixos-generators:
-# 	nix-shell -p nixos-generators --run "nixos-generate --format iso --configuration ./iso.nix -o image"
+# 	nix-shell -p nixos-generators --run "nixos-generate --format iso --configuration ./ISO.nix -o NIXOS-custom-$(date +%Y%m%d).iso"
 #
 # Switch to a specialisation:
 # 	nixos-rebuild switch --specialisation [SPECIALISATION_NAME]
@@ -13,31 +13,22 @@
 # 	- create kde/gnome desktop options -- include individual desktop files
 # - add minimal.nix to imports to prevent copy/pasting
 
-{ pkgs, modulesPath, lib, ... }: {
+{ pkgs, modulesPath, lib, ... }:
+let
+	ARCHITECTURE = "x86_64-linux";
+in {
 	imports = [
 		"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 	];
 
-	nixpkgs.hostPlatform = "x86_64-linux";
+	nixpkgs.hostPlatform = "${ARCHITECTURE}";
 
 	# ----- NIX SETTINGS -----
-	nix.settings = {
-		experimental-features = [ "nix-command" "flakes" ];
-		allowed-users = [ "@wheel" ]; # anyone with sudo priveleges can use the nix command
-	};
 	# Faster compression in exchange for larger file size:
 	#isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
 	# ----- SYSTEM -----
-	boot = {
-		supportedFilesystems = [ "zfs" "ntfs" ];
-	};
-	console = {
-		font = "Lat2-Terminus32";
-		useXkbConfig = true;
-	};
-	i18n.defaultLocale = "en_US.UTF-8";
-	networking = {
+	networking = lib.mkDefault {
 		hostName = "Nomad";
 		hostId = "bc921301"; # for zfs -- generated with: head -c4 /dev/urandom | od -A none -t x4
 		wireless.enable = false; # Enables networking support via wpa_supplicant
@@ -60,21 +51,17 @@
 			enableSSHSupport = true;
 		};
 	};
-	services.xserver.xkb = {
-		#layout = "us";
-		options = "caps:escape";
-	};
-	systemd.tmpfiles.rules = [
+	systemd.tmpfiles.rules = lib.mkDefault [
 		# "d /folder/to/create <chmod-value> <user> <group>"
 		"d /dsk 755 root users"
 		"d /dsk/persistent 755 root users"
-		"d /dsk/tmp 755 root users"
+		#"d /dsk/tmp 755 root users"
 	];
-	users = {
+	users = lib.mkDefault {
 		#motdFile = "";
 		users."nomad" = {
 			isNormalUser = true;
-			extraGroups = [ "wheel" ];
+			extraGroups = [ "networkmanager" "wheel" ];
 			initialPassword = "ontherun!";
 			#openssh.authorizedKeys.keyFiles = [
 				#/home/nomad/.ssh/authorized_keys/\*

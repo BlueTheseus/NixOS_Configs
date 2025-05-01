@@ -5,6 +5,15 @@ let
 	USER = "";
 	TIMEZONE = "America/Los_Angeles";
 in {
+	# ----- BOOT -----
+	boot = {
+		loader = {
+			systemd-boot.enable = true;
+			efi.canTouchEfiVariables = true;
+		};
+	};
+	supportedFilesystems = [ "zfs" "ntfs" ];
+	zfs.forceImportRoot = false;
 
 	# ----- LOCALISATION -----
 	time.timeZone = "${TIMEZONE}";
@@ -37,6 +46,17 @@ in {
 	};
 	
 	# ----- SYSTEM -----
+	security = {
+		sudo.enable = false;
+		doas = {
+			enable = true;
+			extraRules = [{
+				users = [ "${USER}" ];
+				keepEnv = true;
+				persist = true;
+			}];
+		};
+	};
 	system.copySystemConfiguration = true;
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
