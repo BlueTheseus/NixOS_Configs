@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
 	HOSTNAME = "";
+	HOSTID = ""; # for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "";
 in {
 
@@ -21,7 +22,7 @@ in {
 		hostName = "${HOSTNAME}";
 		networkmanager.enable = true;
 		#wireless.enable = false; # uses wpa_supplicant
-		hostId = ""; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
+		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
 		firewall = {
 			enable = true;
 			trustedInterfaces = [ "tailscale0" ];
@@ -38,10 +39,10 @@ in {
 	system.copySystemConfiguration = true;
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /dsk         755 root users"
-		"d /dsk/storage 775 root users"
-		"d /dsk/local   755 root users"
-		"d /dsk/archive 755 root users"
+		"d /dsk         755 root users" #.... Like /mnt but for disks which are always mounted
+		"d /dsk/storage 775 root users" #.... extra storage disks
+		"d /dsk/local   755 root users" #.... local copy of data (like from server)
+		"d /dsk/archive 755 root users" #.... files get stored here as read-only
 	];
 	boot = {
 		supportedFilesystems = [ "zfs" "ntfs" ];
@@ -157,15 +158,16 @@ in {
 		ventoy #............ live-usb
 
 		# ~ Documents ~
+		# TO DO: remove this section and make into nix-shell environments instead
 		#graphviz
-		pandoc
-		python312
-		python312Packages.numpy
-		python312Packages.matplotlib
-		python312Packages.scipy
+		#pandoc
+		#python312
+		#python312Packages.numpy
+		#python312Packages.matplotlib
+		#python312Packages.scipy
 		#texliveConTeXt
-		texliveFull
-		typst
+		#texliveFull
+		#typst
 		unipicker #........ CLI utility for searching unicode characters by description and optionally copying them to clipboard
 	];
 
