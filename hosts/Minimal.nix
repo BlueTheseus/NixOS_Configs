@@ -3,10 +3,11 @@ let
 	HOSTNAME = "";
 	HOSTID = ""; # for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "";
+	TIMEZONE = "America/Los_Angeles";
 in {
 
 	# ----- LOCALISATION -----
-	time.timeZone = "America/Los_Angeles";
+	time.timeZone = "${TIMEZONE}";
 	i18n.defaultLocale = "en_US.UTF-8";
 	console = {
 		font = "Lat2-Terminus32";
@@ -40,9 +41,10 @@ in {
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
 		"d /dsk         755 root users" #.... Like /mnt but for disks which are always mounted
-		"d /dsk/storage 775 root users" #.... extra storage disks
-		"d /dsk/local   755 root users" #.... local copy of data (like from server)
-		"d /dsk/archive 755 root users" #.... files get stored here as read-only
+		"d /dsk/cellar  775 root users" #.... extra storage space
+		"d /dsk/chest   755 root users" #.... safer storage via raid
+		"d /dsk/archive 755 root users" #.... local copy of data (such as from server)
+		"d /dsk/portal  755 root users" #.... for samba shares and the like -- portals to other places
 	];
 	boot = {
 		supportedFilesystems = [ "zfs" "ntfs" ];
