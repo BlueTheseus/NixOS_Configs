@@ -14,6 +14,12 @@ in {
 	};
 	supportedFilesystems = [ "zfs" "ntfs" ];
 	zfs.forceImportRoot = false;
+	specialisation = {
+		CopyToRAM.configuration = {
+			system.nixos.tags = [ "Copy_To_RAM" ];
+			boot.kernelParams = [ "copytoram" ];
+		};
+	};
 
 	# ----- LOCALISATION -----
 	time.timeZone = "${TIMEZONE}";
