@@ -19,6 +19,7 @@ let
 in {
 	imports = [
 		"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+		./Minimal.nix
 	];
 
 	nixpkgs.hostPlatform = "${ARCHITECTURE}";
@@ -144,13 +145,14 @@ in {
 	];
 
 	# ----- OPTIONS -----
-	#specialisation = {
+	specialisation = {
 		#CopyToRAM.configuration = {
 			#system.nixos.tags = [ "Copy_To_RAM" ];
 			#boot.kernelParams = [ "copytoram" ];
 		#};
-		#KDEdesktop = {
-			#system.nixos.tags = [ "KDE Desktop" ];
-		#};
-	#};
+		KDEdesktop = {
+			system.nixos.tags = [ "KDE Desktop" ];
+			imports = [ ./modules/KDE_Desktop.nix ];
+		};
+	};
 }
