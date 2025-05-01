@@ -144,6 +144,7 @@ in {
 		# ~ Networking ~
 		cifs-utils #........ samba
 		curl
+		dnsutils
 		networkmanager
 		#spotdl
 		tailscale
