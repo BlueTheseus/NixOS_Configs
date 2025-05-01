@@ -4,6 +4,8 @@ let
 	HOSTID = ""; # for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "";
 	TIMEZONE = "America/Los_Angeles";
+	AUTO_UPGRADE = false;
+	AUTO_GC = false
 in {
 	# ----- BOOT -----
 	boot = {
@@ -11,9 +13,11 @@ in {
 			systemd-boot.enable = true;
 			efi.canTouchEfiVariables = true;
 		};
+		# Optionally use a different kernel:
+		#kernelPackages = pkgs.linuxPackages_latest_hardened;
+		supportedFilesystems = [ "zfs" "ntfs" ];
+		zfs.forceImportRoot = false;
 	};
-	supportedFilesystems = [ "zfs" "ntfs" ];
-	zfs.forceImportRoot = false;
 	specialisation = {
 		CopyToRAM.configuration = {
 			system.nixos.tags = [ "Copy_To_RAM" ];
@@ -63,19 +67,33 @@ in {
 			}];
 		};
 	};
-	system.copySystemConfiguration = true;
+	system = {
+		copySystemConfiguration = true;
+		autoUpgrade = {
+			enable = ${AUTO_UPGRADE};
+			allowReboot = true;
+			dates = "daily 02:30 ${TIMEZONE}";
+		};
+	};
+	nix = {
+		gc = {
+			automatic = ${AUTO_GC};
+			dates = "Monday 04:00 ${TIMEZONE}";
+			options = "--delete-older-than 7d";
+		};
+		# Auto-garbage collect when less than a certain amount of free space available
+		extraOptions = ''
+			min-free = ${toString (512 * 1024 * 1024)}
+		'';
+	};
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
 		"d /dsk         755 root users" #.... Like /mnt but for disks which are always mounted
-		"d /dsk/cellar  775 root users" #.... extra storage space
-		"d /dsk/chest   755 root users" #.... safer storage via raid
-		"d /dsk/archive 755 root users" #.... local copy of data (such as from server)
-		"d /dsk/portal  755 root users" #.... for samba shares and the like -- portals to other places
+		"d /dsk/cellars  775 root users" #.... extra storage space
+		"d /dsk/chests   755 root users" #.... safer storage via raid
+		"d /dsk/archives 755 root users" #.... local copy of data (such as from server)
+		"d /dsk/portals  755 root users" #.... for samba shares and the like -- portals to other places
 	];
-	boot = {
-		supportedFilesystems = [ "zfs" "ntfs" ];
-		zfs.forceImportRoot = false;
-	};
 	nix.settings = {
 		experimental-features = [ "nix-command" "flakes" ];
 		allowed-users = [ "@wheel" ];
