@@ -1,7 +1,12 @@
+# Filesystem Recommendations:
+# 	- BTRFS
+# 	- Separate root and home partitions
+# Swap:
+# 	- Recommended size: (amount of RAM) + sqrt(amount of RAM)
 { config, pkgs, ... }:
 let
 	HOSTNAME = "";
-	HOSTID = ""; # for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
+	HOSTID = ""; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "";
 	TIMEZONE = "America/Los_Angeles";
 	AUTO_UPGRADE = false;
@@ -15,7 +20,7 @@ in {
 		};
 		# Optionally use a different kernel:
 		#kernelPackages = pkgs.linuxPackages_latest_hardened;
-		supportedFilesystems = [ "zfs" "ntfs" ];
+		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
 	specialisation = {
@@ -72,13 +77,13 @@ in {
 		autoUpgrade = {
 			enable = ${AUTO_UPGRADE};
 			allowReboot = true;
-			dates = "daily 02:30 ${TIMEZONE}";
+			dates = "daily 01:30 ${TIMEZONE}";
 		};
 	};
 	nix = {
 		gc = {
 			automatic = ${AUTO_GC};
-			dates = "Monday 04:00 ${TIMEZONE}";
+			dates = "Saturday 04:00 ${TIMEZONE}";
 			options = "--delete-older-than 7d";
 		};
 		# Auto-garbage collect when less than a certain amount of free space available
@@ -117,10 +122,19 @@ in {
 	# ----- PACKAGES -----
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
-		# ~ Minimum ~
-		btrfs-progs #....... BTRFS utils
+		# ~ Editors ~
+ 		# Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+		micro
+		nano
+		neovim
+
+		# ~ System ~
+		auto-cpufreq #...... auto cpu speed & power optimizer
+		btrfs-progs #....... BTRFS utilities
 		#busybox #.......... Tiny versions of common UNIX utilities in a single small executable
+		#cgdisk
 		#clang #............ A C language family frontend for LLVM (wrapper script)
+		cpulimit #.......... archived, use limitcpu -- however only this works to successfully limit children processes
 		gcc
 		git
 		gnumake
@@ -128,15 +142,15 @@ in {
 		#libclang #......... A C langauge family frontend for LLVM -- provides clang and clang++
 		#libgcc #........... GNU Compiler Collection
 		#libuuid #.......... A set of system utilities for Linux (util-linux-minimal)
-		micro
-		nano
-		neovim #............ Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+		#limitcpu
 		pciutils #.......... A collection of programs for inspecting and manipulating configuration of PCI devices
+		powertop #.......... power monitoring and management
+		tlp #............... battery and power daemon
 		#toybox #........... Lightweight implementation of some Unix command line utilities
-		usbutils #.......... Tools for working with USB devices, such as lsusb
+		#usbutils #.......... Tools for working with USB devices, such as lsusb
 		util-linux #........ A set of system utilities for Linux
 		exfat #............. Free exFAT file system implementation
-		zfs
+		zfs #............... ZFS utilities
 
 		# ~ Encryption ~
 		cryptsetup
@@ -146,76 +160,44 @@ in {
 		pass #.............. Stores, retrieves, generates, and synchronizes passwords securely
 		pinentry-curses #... needed by tomb
 
-		# ~ Fonts ~
-		#nerdfonts
-		#inter #............. A typeface specially designed for user interfaces
-
 		# ~ Info ~
 		#bunnyfetch
 		exiftool #.......... file metadata
 		fastfetch
 		mediainfo
-		#neofetch
 		#starfetch
 		#uwufetch
 
 		# ~ Networking ~
-		cifs-utils #........ samba
-		curl
-		dnsutils
+		#cifs-utils #........ samba
+		#curl
+		#dnsutils
 		networkmanager
-		#spotdl
 		tailscale
-		wget
+		#wget
 		wpa_supplicant
-		yt-dlp
-
-		# ~ System Management ~
-		auto-cpufreq #...... auto cpu speed & power optimizer
-		btop #.............. system monitoring
-		#limitcpu
-		cpulimit #.......... archived, use limitcpu -- however only this works to successfully limit children processes
-		powertop #.......... power monitoring and management
-		tlp #............... battery and power daemon
+		#yt-dlp
 
 		# ~ Terminal Utilities ~
 		#abduco #........... Allows programs to be run independently from its controlling terminal
-		bat #............... pretty cat for the terminal
+		#bat #............... pretty cat for the terminal
 		#borgbackup #....... Deduplicating archiver with compression and encryption
-		cbonsai #........... screensaver
+		btop #.............. system monitoring
 		#cope #............. A colourful wrapper for terminal programs
 		#dvtm #............. Dynamic virtual terminal manager
 		ffmpeg
 		fzf
-		glow #.............. cli markdown renderer
-		#lazygit #........... tui git
-		lf #................ file manager
-		#libnotify #......... notify-send
-		#most #............. A terminal pager similar to 'more' and 'less'
 		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
+		nnn #............... minimal file manager
 		p7zip
-		#pistol #............ file previewer
-		rclone #............ Like rsync but for cloud storage services
+		#pistol #........... file previewer
+		#rclone #............ Like rsync but for cloud storage services
 		#restic #........... A backup program that is fast, efficient, and secure
 		rsync
-		#texliveSmall
 		tmux #.............. terminal multiplexer
 		trash-cli #......... don't accidentally rm something important ;)
-		#uxn #............... Assembler and emulator for the Uxn stack machine
-		ventoy #............ live-usb
-
-		# ~ Documents ~
-		# TO DO: remove this section and make into nix-shell environments instead
-		#graphviz
-		#pandoc
-		#python312
-		#python312Packages.numpy
-		#python312Packages.matplotlib
-		#python312Packages.scipy
-		#texliveConTeXt
-		#texliveFull
-		#typst
-		unipicker #........ CLI utility for searching unicode characters by description and optionally copying them to clipboard
+		unipicker #......... CLI utility for searching unicode characters by description and optionally copying them to clipboard
+		zellij #............ user-friendly terminal multiplexer
 	];
 
 	# ~ Fonts ~
@@ -233,13 +215,5 @@ in {
 		ucs-fonts #......... Unicode bitmap fonts
 		unifont #........... GNU's Unicode font for Base Multilingual Plane
 		unscii #............ Bitmapped character-art-friendly Unicode fonts
-
-		#(nerdfonts.override { fonts = [    #.... Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts
-			#"iA-Writer"
-			#"IBMPlexMono"
-			#"IntelOneMono"
-			#"Iosevka"
-			#"IosevkaTerm"
-		#]; }) 
 	];
 }
