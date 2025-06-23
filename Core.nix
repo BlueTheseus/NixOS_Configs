@@ -147,7 +147,7 @@ in {
 		powertop #.......... power monitoring and management
 		tlp #............... battery and power daemon
 		#toybox #........... Lightweight implementation of some Unix command line utilities
-		#usbutils #.......... Tools for working with USB devices, such as lsusb
+		#usbutils #......... Tools for working with USB devices, such as lsusb
 		util-linux #........ A set of system utilities for Linux
 		exfat #............. Free exFAT file system implementation
 		zfs #............... ZFS utilities
@@ -155,65 +155,16 @@ in {
 		# ~ Encryption ~
 		cryptsetup
 		gnupg
-		#gpg-tui #.......... Terminal user interface for GnuPG
 		tomb
 		pass #.............. Stores, retrieves, generates, and synchronizes passwords securely
 		pinentry-curses #... needed by tomb
 
-		# ~ Info ~
-		#bunnyfetch
-		exiftool #.......... file metadata
-		fastfetch
-		mediainfo
-		#starfetch
-		#uwufetch
-
 		# ~ Networking ~
-		#cifs-utils #........ samba
-		#curl
-		#dnsutils
 		networkmanager
 		tailscale
-		#wget
 		wpa_supplicant
-		#yt-dlp
 
 		# ~ Terminal Utilities ~
-		#abduco #........... Allows programs to be run independently from its controlling terminal
-		#bat #............... pretty cat for the terminal
-		#borgbackup #....... Deduplicating archiver with compression and encryption
 		btop #.............. system monitoring
-		#cope #............. A colourful wrapper for terminal programs
-		#dvtm #............. Dynamic virtual terminal manager
-		ffmpeg
-		fzf
-		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
-		nnn #............... minimal file manager
-		p7zip
-		#pistol #........... file previewer
-		#rclone #............ Like rsync but for cloud storage services
-		#restic #........... A backup program that is fast, efficient, and secure
-		rsync
-		tmux #.............. terminal multiplexer
-		trash-cli #......... don't accidentally rm something important ;)
-		unipicker #......... CLI utility for searching unicode characters by description and optionally copying them to clipboard
-		zellij #............ user-friendly terminal multiplexer
-	];
-
-	# ~ Fonts ~
-	fonts.packages = with pkgs; [
-		cozette #........... A bitmap programming font optimized for coziness
-		dina-font #......... A monospace bitmap font aimed at programmers
-		#google-fonts #...... Font files available from Google Fonts
-		#noto-fonts #........ Beautiful and free fonts for many languages
-		scientifica #....... Tall and condensed bitmap font for geeks
-		siji #.............. An iconic bitmap font based on Stlarch with additional glyphs
-		spleen #............ Monospaced bitmap fonts
-		tamsyn #............ A monospace bitmap font aimed at programmers
-		tamzen #............ Bitmapped programming font based on Tamsyn
-		tewi-font #......... A nice bitmap font, readable even at small sizes
-		ucs-fonts #......... Unicode bitmap fonts
-		unifont #........... GNU's Unicode font for Base Multilingual Plane
-		unscii #............ Bitmapped character-art-friendly Unicode fonts
 	];
 }
