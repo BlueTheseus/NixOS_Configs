@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-	imports = [ ./packages.nix ];
+	imports = [ ./desktop-packages.nix ];
 
-	# ----- X11 and Gnome -----
+	# ----- KDE PLASMA -----
 	services = {
 		displayManager = {
 			defaultSession = "plasma";
@@ -16,19 +16,29 @@
 	};
 	
 	
-	# ----- QT Configuration -----
+	# ----- QT CONFIGURATION -----
 	qt = {
 		enable = true;
 		#platformTheme = "gnome";
 		#style = "adwaita-dark";
 	};
 	
-	# ----- Extra Packages -----
+	# ----- PACKAGES -----
+	nixpkgs.config.packageOverrides = pkgs: { # Enable the Nix Users Repository
+		nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
+			inherit pkgs;
+		};
+	};
+
+	# ~ Extra Packages ~
 	environment.systemPackages = with pkgs; [
-		qpwgraph #..... QT-based pipewire manager
+		kdePackages.krohnkite
+		nur.repos.shadowrz.klassy-qt6
+		qpwgraph #.......... QT-based pipewire manager
+		typstwriter #....... Editor for the typst formatting language
 	];
 	
-	# Exclude select default KDE Plasma applications
+	# ~ Exclude Packages ~
 	#environment.plasma6.excludePackages = with pkgs.kdePackages; [
 		#plasma-browser-integration
 		#konsole
