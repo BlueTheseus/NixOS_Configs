@@ -7,6 +7,7 @@
 		#arduino #................ arduino IDE
 		aseprite #................ pixelart and animation editor
 		blender #................. 3d modeling
+		bluez #................... official linux bluetooth protocol stack
 		brave #................... browser
 		discord
 		# firefox #............... browser

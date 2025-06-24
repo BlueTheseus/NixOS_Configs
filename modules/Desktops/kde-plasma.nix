@@ -32,10 +32,11 @@
 
 	# ~ Extra Packages ~
 	environment.systemPackages = with pkgs; [
+		kdePackages.bluedevil #.............. adds bluetooth capabilities to KDE Plasma
 		kdePackages.krohnkite
 		nur.repos.shadowrz.klassy-qt6
-		qpwgraph #.......... QT-based pipewire manager
-		typstwriter #....... Editor for the typst formatting language
+		qpwgraph #........................... QT-based pipewire manager
+		typstwriter #........................ Editor for the typst formatting language
 	];
 	
 	# ~ Exclude Packages ~

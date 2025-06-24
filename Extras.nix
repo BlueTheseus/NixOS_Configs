@@ -20,6 +20,7 @@
 		man-pages-posix
 
 		# ~ Networking ~
+		bluez #............. official linux bluetooth protocol stack
 		cifs-utils #........ samba
 		curl
 		dnsutils
