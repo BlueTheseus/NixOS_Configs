@@ -32,7 +32,8 @@
 
 	# ~ Extra Packages ~
 	environment.systemPackages = with pkgs; [
-		kdePackages.bluedevil #.............. adds bluetooth capabilities to KDE Plasma
+		#kdePackages.bluedevil #.............. adds bluetooth capabilities to KDE Plasma
+		kdePackages.bluez-qt #............... Qt wrapper for Bluez 5 DBus API -- for bluetooth control in kde settings
 		kdePackages.krohnkite
 		nur.repos.shadowrz.klassy-qt6
 		qpwgraph #........................... QT-based pipewire manager
