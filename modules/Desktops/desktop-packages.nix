@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+	USER = "";
+in {
 	# ----- DESKTOP -----
 	environment.systemPackages = with pkgs; [
 		anki #.................... flashcards
@@ -67,7 +69,7 @@
 			#dragAndDrop = true;
 		#};
 	};
-	users.extraGroups.vboxusers.members = [ "Xenia" ];
+	users.extraGroups.vboxusers.members = [ "${USER}" ];
 
 	# ----- SOUND -----
 	# ~ ALSA ~
