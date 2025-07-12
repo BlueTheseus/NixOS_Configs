@@ -5,36 +5,40 @@ let
 in {
 	# ----- DESKTOP -----
 	environment.systemPackages = with pkgs; [
-		anki #.................... flashcards
-		#arduino #................ arduino IDE
-		aseprite #................ pixelart and animation editor
-		blender #................. 3d modeling
-		bluez #................... official linux bluetooth protocol stack
-		brave #................... browser
+		anki #...................... flashcards
+		#arduino #.................. arduino IDE
+		aseprite #.................. pixelart and animation editor
+		blender #................... 3d modeling
+		bluez #..................... official linux bluetooth protocol stack
+		brave #..................... browser
 		discord
-		# firefox #............... browser
+		# firefox #................. browser
 		#flatpak
-		#floorp #................. firefox-based browser
-		gimp
+		#floorp #................... firefox-based browser
+		#freecad
+		freecad-wayland #........... General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
+		#freecad-qt6
+		gimp #...................... GNU Image Manipulation Program
 		jellyfin-media-player
-		kdePackages.kcharselect #. Tool to select and copy special characters from all installed fonts
-		kicad #................... open source electronics design automation suite
-		libnotify #............... a library that sends desktop notifications to a notification daemon
+		kdePackages.kcharselect #... Tool to select and copy special characters from all installed fonts
+		kicad #..................... open source electronics design automation suite
+		libnotify #................. a library that sends desktop notifications to a notification daemon
+		#librecad #................. 2D CAD package based on Qt
 		libreoffice
-		mpv #..................... video and music player
-		obsidian #................ notes
+		mpv #....................... video and music player
+		obsidian #.................. notes
 		obs-studio
 		#protonvpn-gui
 		slack
 		telegram-desktop
-		#tg #...................... terminal client for telegram
-		(tic-80.override { withPro = true; } )
-		#thunderbird #............. email client
+		#tg #....................... terminal client for telegram
+		#(tic-80.override { withPro = true; } )
+		#thunderbird #.............. email client
 		#tor-browser-bundle-bin
-		#virtualbox #.............. virtual machines
-		vlc #..................... media player
-		wezterm #................. terminal emulator
-		zathura #................. pdf/epub viewer
+		#virtualbox #............... virtual machines
+		vlc #....................... media player
+		wezterm #................... terminal emulator
+		zathura #................... pdf/epub viewer
 	];
 
 	# ----- GAMING -----
