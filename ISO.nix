@@ -19,7 +19,8 @@ let
 in {
 	imports = [
 		"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-		./Minimal.nix
+		./modules/Core.nix
+		./modules/Extras.nix
 	];
 
 	nixpkgs.hostPlatform = "${ARCHITECTURE}";
