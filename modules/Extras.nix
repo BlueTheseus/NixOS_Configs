@@ -40,6 +40,7 @@
 		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
 		p7zip #............. zip utility
 		#pistol #........... file previewer
+		#qemu #.............. Generic and open source machine emulator and virtualizer
 		rclone #............ Like rsync but for cloud storage services
 		#restic #........... A backup program that is fast, efficient, and secure
 		rsync
