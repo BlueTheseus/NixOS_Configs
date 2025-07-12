@@ -5,7 +5,6 @@ in {
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv                        755 root users"
 		"d /srv/anki-sync-server       755 root users"
 		"d /srv/anki-sync-server/users 755 root users"
 		"d /srv/anki-sync-server/data  755 root users"

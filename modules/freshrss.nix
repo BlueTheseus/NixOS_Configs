@@ -11,7 +11,6 @@ in {
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/ 755 root users"
 		"d /srv/freshrss 755 root users"
 		"d /srv/freshrss/data 755 root users"
 	];

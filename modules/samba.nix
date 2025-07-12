@@ -9,7 +9,6 @@
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/ 755 root users"
 		"d /srv/samba 755 root users"
 		"d /srv/samba/Portal 755 root users"
 		"d /srv/samba/School 755 root users"

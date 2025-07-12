@@ -6,7 +6,6 @@
 	# Make sure certain directories exist
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv 0755 root users"
 		"d /srv/nextcloud 0755 root users"
 		"d /srv/nextcloud/data 0755 root users"
 	];

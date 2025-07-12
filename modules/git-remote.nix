@@ -18,7 +18,6 @@ let
 in {
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv 0755 root users"
 		"d /srv/git-server 0775 root users"
 	];
 
