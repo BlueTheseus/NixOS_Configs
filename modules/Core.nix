@@ -93,7 +93,7 @@ in {
 	};
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /dsk         755 root users" #.... Like /mnt but for disks which are always mounted
+		"d /dsk          755 root users" #.... Like /mnt but for disks which are always mounted
 		"d /dsk/cellars  775 root users" #.... extra storage space
 		"d /dsk/chests   755 root users" #.... safer storage via raid
 		"d /dsk/archives 755 root users" #.... local copy of data (such as from server)
