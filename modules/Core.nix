@@ -156,6 +156,7 @@ in {
 		# ~ Encryption ~
 		cryptsetup
 		gnupg
+		keepassxc #......... Provides keepassxc-cli
 		tomb
 		pass #.............. Stores, retrieves, generates, and synchronizes passwords securely
 		pinentry-curses #... needed by tomb
