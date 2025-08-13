@@ -84,52 +84,6 @@
 				# "veto files" = "";
 				# "delete veto files" = "yes";
 			#};
-
-			"Portal" = {
-				path = "/srv/samba/Portal";
-				browseable = "yes";
-				public = "no";
-				"read only" = "no";
-				"guest ok" = "no"; # Private - Must provide valid login
-				"valid users" = "nico";
-				#"create mask" = "0664";
-				#"directory mask" = "0755";
-				#"force user" = "username";
-				#"force group" = "groupname";
-				# "veto files" = "";
-				# "delete veto files" = "yes";
-			};
-
-			"School" = {
-				path = "/srv/samba/School";
-				browseable = "yes";
-				public = "no";
-				"read only" = "no";
-				"guest ok" = "no"; # Private - Must provide valid login
-				"valid users" = "nico";
-				#"create mask" = "0644";
-				#"directory mask" = "0755";
-				#"force user" = "username";
-				#"force group" = "groupname";
-				# "veto files" = "";
-				# "delete veto files" = "yes";
-			};
-
-			"Library" = {
-				path = "/srv/samba/Library";
-				browseable = "yes";
-				public = "no";
-				"read only" = "no";
-				"guest ok" = "no"; # Private - Must provide valid login
-				"valid users" = "nico";
-				#"create mask" = "0664";
-				#"directory mask" = "0755";
-				#"force user" = "username";
-				#"force group" = "groupname";
-				# "veto files" = "";
-				# "delete veto files" = "yes";
-			};
-
 		};
 	};
 	# directory /var/lib/samba/private must be accessible by samba (root) for smbpasswd
