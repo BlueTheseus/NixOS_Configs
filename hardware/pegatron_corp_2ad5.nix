@@ -1,0 +1,4 @@
+{ config, ... }:
+{
+	# add nvidia
+}
