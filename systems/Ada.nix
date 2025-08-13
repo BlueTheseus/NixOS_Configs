@@ -22,7 +22,10 @@ in {
 		../modules/Core.nix
 		#../modules/Extras.nix
 		#../modules/Desktops/kde-plasma.nix
+		../modules/ssh.nix
 		../modules/samba.nix
+		../modules/jellyfin.nix
+		#../modules/nextcloud.nix
 	];
 
 	# ----- BOOT -----
@@ -57,6 +60,12 @@ in {
 		"${USER}" = {
 			isNormalUser = true;
 			extraGroups = [ "networkmanager" "wheel" ];
+			openssh.authorizedKeys.keyFiles = [
+				/home/${USER}/.ssh/authorized_keys/horcrux.pub
+				/home/${USER}/.ssh/authorized_keys/workstation.pub
+				/home/${USER}/.ssh/authorized_keys/tome.pub
+				/home/${USER}/.ssh/authorized_keys/altar.pub
+			];
 		};
 		"vaults" = {
 			isNormalUser = false;
