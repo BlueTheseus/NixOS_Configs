@@ -4,34 +4,8 @@
 # Swap:
 # 	- Recommended size: (amount of RAM) + sqrt(amount of RAM)
 { config, pkgs, ... }:
-let
-	HOSTNAME = "";
-	HOSTID = ""; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
-	USER = "";
-	TIMEZONE = "America/Los_Angeles";
-	AUTO_UPGRADE = false;
-	AUTO_GC = false
-in {
-	# ----- BOOT -----
-	boot = {
-		loader = {
-			systemd-boot.enable = true;
-			efi.canTouchEfiVariables = true;
-		};
-		# Optionally use a different kernel:
-		#kernelPackages = pkgs.linuxPackages_latest_hardened;
-		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
-		zfs.forceImportRoot = false;
-	};
-	specialisation = {
-		CopyToRAM.configuration = {
-			system.nixos.tags = [ "Copy_To_RAM" ];
-			boot.kernelParams = [ "copytoram" ];
-		};
-	};
-
+{
 	# ----- LOCALISATION -----
-	time.timeZone = "${TIMEZONE}";
 	i18n.defaultLocale = "en_US.UTF-8";
 	console = {
 		font = "Lat2-Terminus32";
@@ -39,58 +13,20 @@ in {
 	};
 	services.xserver.xkb = {
 		layout = "us";
-		options = "caps:escape";
+		options = "caps:escape"; # Turn CapsLock into Escape
 	};
 	
 	# ----- NETWORKING -----
 	networking = {
-		hostName = "${HOSTNAME}";
-		networkmanager.enable = true;
-		#wireless.enable = false; # uses wpa_supplicant
-		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
+		networkmanager.enable = true; # Choose either networkmanager OR wpa_supplicant
+		#wireless.enable = false; # Uses wpa_supplicant
 		firewall = {
 			enable = true;
 			trustedInterfaces = [ "tailscale0" ];
 		};
 	};
-
-	# ----- USERS -----
-	users.users."${USER}" = {
-		isNormalUser = true;
-		extraGroups = [ "networkmanager" "wheel" ];
-	};
 	
 	# ----- SYSTEM -----
-	security = {
-		sudo.enable = false;
-		doas = {
-			enable = true;
-			extraRules = [{
-				users = [ "${USER}" ];
-				keepEnv = true;
-				persist = true;
-			}];
-		};
-	};
-	system = {
-		copySystemConfiguration = true;
-		autoUpgrade = {
-			enable = ${AUTO_UPGRADE};
-			allowReboot = true;
-			dates = "daily 01:30 ${TIMEZONE}";
-		};
-	};
-	nix = {
-		gc = {
-			automatic = ${AUTO_GC};
-			dates = "Saturday 04:00 ${TIMEZONE}";
-			options = "--delete-older-than 7d";
-		};
-		# Auto-garbage collect when less than a certain amount of free space available
-		extraOptions = ''
-			min-free = ${toString (512 * 1024 * 1024)}
-		'';
-	};
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
 		"d /srv          755 root users" #.... services
@@ -100,10 +36,6 @@ in {
 		"d /dsk/archives 755 root users" #.... local copy of data (such as from server)
 		"d /dsk/portals  755 root users" #.... for samba shares and the like -- portals to other places
 	];
-	nix.settings = {
-		experimental-features = [ "nix-command" "flakes" ];
-		allowed-users = [ "@wheel" ];
-	};
 
 	# ----- SUID WRAPPERS -----
 	programs = {
@@ -116,7 +48,7 @@ in {
 
 	# ----- SERVICES -----
 	services = {
-		fwupd.enable = true;
+		fwupd.enable = true; # Firmware Updater
 		tailscale.enable = true;
 	};
 
@@ -132,23 +64,13 @@ in {
 		# ~ System ~
 		auto-cpufreq #...... auto cpu speed & power optimizer
 		btrfs-progs #....... BTRFS utilities
-		#busybox #.......... Tiny versions of common UNIX utilities in a single small executable
-		#cgdisk
-		#clang #............ A C language family frontend for LLVM (wrapper script)
-		cpulimit #.......... archived, use limitcpu -- however only this works to successfully limit children processes
 		gcc
 		git
 		gnumake
 		gptfdisk #.......... TUI disk management
-		#libclang #......... A C langauge family frontend for LLVM -- provides clang and clang++
-		#libgcc #........... GNU Compiler Collection
-		#libuuid #.......... A set of system utilities for Linux (util-linux-minimal)
-		#limitcpu
 		pciutils #.......... A collection of programs for inspecting and manipulating configuration of PCI devices
 		powertop #.......... power monitoring and management
 		tlp #............... battery and power daemon
-		#toybox #........... Lightweight implementation of some Unix command line utilities
-		#usbutils #......... Tools for working with USB devices, such as lsusb
 		util-linux #........ A set of system utilities for Linux
 		exfat #............. Free exFAT file system implementation
 		zfs #............... ZFS utilities

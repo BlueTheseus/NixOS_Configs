@@ -42,7 +42,7 @@ in {
 		};
 	};
 
-	# ----- LOCALISATION -----
+	# ----- LOCALISATION AND CONSOLE -----
 	time.timeZone = "${TIMEZONE}";
 	
 	# ----- NETWORKING -----
@@ -78,6 +78,10 @@ in {
 		};
 	};
 	nix = {
+		settings = {
+			experimental-features = [ "nix-command" "flakes" ];
+			allowed-users = [ "@wheel" ];
+		};
 		gc = {
 			automatic = false;
 			dates = "Saturday 04:00 ${TIMEZONE}";
@@ -88,4 +92,21 @@ in {
 			min-free = ${toString (512 * 1024 * 1024)}
 		'';
 	};
+
+	# ----- EXTRA SYSTEM PACKAGES -----
+	nixpkgs.config.allowUnfree = true;
+	environment.systemPackages = with pkgs; [
+		# ~ System ~
+		#auto-cpufreq #...... auto cpu speed & power optimizer
+		#busybox #.......... Tiny versions of common UNIX utilities in a single small executable
+		#cgdisk
+		#clang #............ A C language family frontend for LLVM (wrapper script)
+		cpulimit #.......... archived, use limitcpu -- however only this works to successfully limit children processes
+		#libclang #......... A C langauge family frontend for LLVM -- provides clang and clang++
+		#libgcc #........... GNU Compiler Collection
+		#libuuid #.......... A set of system utilities for Linux (util-linux-minimal)
+		#limitcpu
+		#toybox #........... Lightweight implementation of some Unix command line utilities
+		#usbutils #......... Tools for working with USB devices, such as lsusb
+	];
 }
