@@ -10,7 +10,7 @@
 # 	- Separate root and home partitions
 # Swap:
 # 	- Recommended size: (amount of RAM) + sqrt(amount of RAM)
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
 	HOSTNAME = "Familiar";
 	HOSTID = "88452ff9"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
