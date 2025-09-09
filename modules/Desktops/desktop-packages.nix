@@ -25,10 +25,12 @@ in {
 		libnotify #................. a library that sends desktop notifications to a notification daemon
 		#librecad #................. 2D CAD package based on Qt
 		libreoffice
+		#logisim-evolution #........ Digital logic designer and simulator
 		mpv #....................... video and music player
 		obsidian #.................. notes
 		obs-studio
 		#protonvpn-gui
+		#qucs-s #.................... Analog and Digital circuit simulator
 		slack
 		telegram-desktop
 		#tg #....................... terminal client for telegram
