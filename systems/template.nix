@@ -50,6 +50,32 @@ in {
 		hostName = "${HOSTNAME}";
 		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
 	};
+	hardware.bluetooth = { # https://mynixos.com/nixpkgs/option/hardware.bluetooth.settings
+		enable = true;
+		settings.General = {
+			#ControllerMode = "bredr"; # Possible values: dual, bredr, le
+			Enable = "Source,Sink,Media,Socket";
+		};
+	};
+	# ~ Samba ~
+	# https://nixos.wiki/wiki/Samba
+	systemd.tmpfiles.rules = [
+		# "d /folder/to/create <chmod-value> <user> <group>"
+		"d /dsk/portals/Samba         755 root users" #.... for samba shares and the like -- portals to other places
+		"d /dsk/portals/Samba/Private 755 root users" #.... for samba shares and the like -- portals to other places
+	];
+	# /etc/nixos/secrets/samba
+	# username=<USERNAME>
+	# domain=<DOMAIN> # (optional)
+	# password=<PASSWORD>
+	fileSystems."/dsk/portals/Private" = {
+		device = "//hostname/Private";
+		fsType = "cifs";
+		options = let
+			# this line prevents hanging on network split
+			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+		in ["${automount_opts},credentials=/etc/nixos/secrets/samba"];
+	};
 
 	# ----- USERS -----
 	users.users."${USER}" = {
