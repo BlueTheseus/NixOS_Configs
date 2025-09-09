@@ -20,7 +20,6 @@ in {
 	imports = [
 		../hardware/dell-xps15-9510.nix
 		../modules/Core.nix
-		../modules/Extras.nix
 		../modules/Desktops/kde-plasma.nix
 	];
 
@@ -30,8 +29,6 @@ in {
 			systemd-boot.enable = true;
 			efi.canTouchEfiVariables = true;
 		};
-		# Optionally use a different kernel:
-		#kernelPackages = pkgs.linuxPackages_latest_hardened;
 		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
@@ -43,6 +40,50 @@ in {
 	networking = {
 		hostName = "${HOSTNAME}";
 		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
+	};
+	hardware.bluetooth = { # https://mynixos.com/nixpkgs/option/hardware.bluetooth.settings
+		enable = true;
+		settings.General = {
+			#ControllerMode = "bredr"; # Possible values: dual, bredr, le
+			Enable = "Source,Sink,Media,Socket";
+		};
+	};
+	# ~ Samba ~
+	# https://nixos.wiki/wiki/Samba
+	systemd.tmpfiles.rules = [
+		# "d /folder/to/create <chmod-value> <user> <group>"
+		"d /dsk/portals/samba         755 root users"
+		"d /dsk/portals/samba/Portal  755 root users"
+		"d /dsk/portals/samba/School  755 root users"
+		"d /dsk/portals/samba/Library 755 root users"
+	];
+	# /etc/nixos/secrets/samba
+	# username=<USERNAME>
+	# domain=<DOMAIN> # (optional)
+	# password=<PASSWORD>
+	fileSystems."/dsk/portals/samba/Portal" = {
+		device = "//srv/Portal";
+		fsType = "cifs";
+		options = let
+			# this line prevents hanging on network split
+			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+		in ["${automount_opts},credentials=/etc/nixos/secrets/samba"];
+	};
+	fileSystems."/dsk/portals/samba/School" = {
+		device = "//srv/School";
+		fsType = "cifs";
+		options = let
+			# this line prevents hanging on network split
+			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+		in ["${automount_opts},credentials=/etc/nixos/secrets/samba"];
+	};
+	fileSystems."/dsk/portals/samba/Library" = {
+		device = "//srv/Library";
+		fsType = "cifs";
+		options = let
+			# this line prevents hanging on network split
+			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+		in ["${automount_opts},credentials=/etc/nixos/secrets/samba"];
 	};
 
 	# ----- USERS -----
@@ -72,6 +113,10 @@ in {
 		};
 	};
 	nix = {
+		settings = {
+			experimental-features = [ "nix-command" "flakes" ];
+			allowed-users = [ "@wheel" ];
+		};
 		gc = {
 			automatic = false;
 			dates = "Saturday 04:00 ${TIMEZONE}";
@@ -82,4 +127,121 @@ in {
 			min-free = ${toString (512 * 1024 * 1024)}
 		'';
 	};
+	services.usbmuxd = { # IOS device connectivity
+		enable = true;
+		#package = pkgs.usbmuxd2;
+	};
+
+	# ----- DOCUMENTATION -----
+	documentation = {
+		dev.enable = true;
+		man = {
+			#man-db.enable = false; # Use mandoc instead of man-db
+			#mandoc.enable = true;
+			generateCaches = true;
+		};
+	};
+
+	# ----- FONTS -----
+	fonts.packages = with pkgs; [
+		cozette #........... A bitmap programming font optimized for coziness
+		dina-font #......... A monospace bitmap font aimed at programmers
+		#google-fonts #...... Font files available from Google Fonts
+		#noto-fonts #........ Beautiful and free fonts for many languages
+		scientifica #....... Tall and condensed bitmap font for geeks
+		siji #.............. An iconic bitmap font based on Stlarch with additional glyphs
+		spleen #............ Monospaced bitmap fonts
+		tamsyn #............ A monospace bitmap font aimed at programmers
+		tamzen #............ Bitmapped programming font based on Tamsyn
+		tewi-font #......... A nice bitmap font, readable even at small sizes
+		ucs-fonts #......... Unicode bitmap fonts
+		unifont #........... GNU's Unicode font for Base Multilingual Plane
+		unscii #............ Bitmapped character-art-friendly Unicode fonts
+
+		nerd-fonts._0xproto
+		nerd-fonts.adwaita-mono
+		nerd-fonts.blex-mono
+		nerd-fonts.comic-shanns-mono
+		nerd-fonts.im-writing
+		nerd-fonts.intone-mono
+		nerd-fonts.iosevka
+		nerd-fonts.iosevka-term
+	];
+
+	# ----- EXTRA SYSTEM PACKAGES -----
+	nixpkgs.config.allowUnfree = true;
+	environment.systemPackages = with pkgs; [
+		# ~ System ~
+		#auto-cpufreq #...... auto cpu speed & power optimizer
+		#busybox #.......... Tiny versions of common UNIX utilities in a single small executable
+		#cgdisk
+		#clang #............ A C language family frontend for LLVM (wrapper script)
+		cpulimit #.......... archived, use limitcpu -- however only this works to successfully limit children processes
+		#libclang #......... A C langauge family frontend for LLVM -- provides clang and clang++
+		#libgcc #........... GNU Compiler Collection
+		#libuuid #.......... A set of system utilities for Linux (util-linux-minimal)
+		#limitcpu
+		#toybox #........... Lightweight implementation of some Unix command line utilities
+		usbutils #......... Tools for working with USB devices, such as lsusb
+
+		# ~ Documentation ~
+		man-pages #........... Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
+		man-pages-posix
+
+		# ~ Encryption ~
+		#gpg-tui #.......... Terminal user interface for GnuPG
+
+		# ~ Info ~
+		#bunnyfetch
+		exiftool #.......... file metadata
+		fastfetch
+		mediainfo
+		#neofetch
+		#starfetch
+		#uwufetch
+
+		# ~ Networking ~
+		bluez #............. Official linux bluetooth protocol stack
+		cifs-utils #........ Samba
+		curl
+		dnsutils
+		wget
+		yt-dlp
+
+		# ~ Utilities ~
+		bat #............... pretty cat for the terminal
+		#borgbackup #....... Deduplicating archiver with compression and encryption
+		cbonsai #........... screensaver
+		#cope #............. A colourful wrapper for terminal programs
+		ffmpeg
+		fzf
+		#glow #............. cli markdown renderer
+		ifuse
+		#lazygit #.......... TUI git
+		libmobiledevice #... IOS device connection
+		libnotify #......... notify-send
+		libsixel #.......... SIXEL library for console graphics, and converter programs
+		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
+		p7zip #............. zip utility
+		#pistol #........... file previewer
+		#qemu #.............. Generic and open source machine emulator and virtualizer
+		rclone #............ Like rsync but for cloud storage services
+		#restic #........... A backup program that is fast, efficient, and secure
+		rsync
+		trash-cli #......... trash can for the commandline. Don't accidentally rm something important ;)
+		unipicker #......... CLI utility for searching unicode characters by description and optionally copying them to clipboard
+		#ventoy #........... live-usb
+
+                # ~ Productivity ~
+		#abduco #........... Allows programs to be run independently from its controlling terminal
+		#aerc #............. Email client for your terminal
+		#dvtm #............. Dynamic virtual terminal manager
+		lf #................ file manager
+		#neomutt #.......... Small but very powerful text-based mail client
+		#nnn #.............. minimal file manager
+		tmux #.............. widely-used terminal multiplexer
+		w3m #............... Text-mode web browser
+		#xplr #............. Hackable, minimal, fast TUI file explore
+		#zellij #........... user-friendly terminal multiplexer
+	];
 }
