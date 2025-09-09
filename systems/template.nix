@@ -20,7 +20,6 @@ in {
 	imports = [
 		#../hardware/
 		../modules/Core.nix
-		#../modules/Extras.nix
 		#../modules/Desktops/kde-plasma.nix
 	];
 
