@@ -61,14 +61,14 @@ in {
 	# https://nixos.wiki/wiki/Samba
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /dsk/portals/Samba         755 root users" #.... for samba shares and the like -- portals to other places
-		"d /dsk/portals/Samba/Private 755 root users" #.... for samba shares and the like -- portals to other places
+		"d /dsk/portals/samba         755 root users" #.... for samba shares and the like -- portals to other places
+		"d /dsk/portals/samba/Private 755 root users" #.... for samba shares and the like -- portals to other places
 	];
 	# /etc/nixos/secrets/samba
 	# username=<USERNAME>
 	# domain=<DOMAIN> # (optional)
 	# password=<PASSWORD>
-	fileSystems."/dsk/portals/Private" = {
+	fileSystems."/dsk/portals/samba/Private" = {
 		device = "//hostname/Private";
 		fsType = "cifs";
 		options = let
@@ -118,14 +118,19 @@ in {
 			min-free = ${toString (512 * 1024 * 1024)}
 		'';
 	};
+	services.usbmuxd = { # IOS device connectivity
+		enable = true;
+		#package = pkgs.usbmuxd2;
+	};
 
 	# ----- DOCUMENTATION -----
 	documentation = {
 		dev.enable = true;
-		#man = { # Use mandoc instead of man-db
-			#man-db.enable = false;
+		man = {
+			#man-db.enable = false; # Use mandoc instead of man-db
 			#mandoc.enable = true;
-		#};
+			generateCaches = true;
+		};
 	};
 
 	# ----- FONTS -----
@@ -168,7 +173,7 @@ in {
 		#libuuid #.......... A set of system utilities for Linux (util-linux-minimal)
 		#limitcpu
 		#toybox #........... Lightweight implementation of some Unix command line utilities
-		#usbutils #......... Tools for working with USB devices, such as lsusb
+		usbutils #......... Tools for working with USB devices, such as lsusb
 
 		# ~ Documentation ~
 		man-pages #........... Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
@@ -202,6 +207,9 @@ in {
 		ffmpeg
 		fzf
 		#glow #............. cli markdown renderer
+		ifuse
+		#lazygit #.......... TUI git
+		libmobiledevice #... IOS device connection
 		libnotify #......... notify-send
 		libsixel #.......... SIXEL library for console graphics, and converter programs
 		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
