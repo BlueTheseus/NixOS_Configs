@@ -89,7 +89,7 @@ in {
 	# ----- USERS -----
 	users.users."${USER}" = {
 		isNormalUser = true;
-		extraGroups = [ "networkmanager" "wheel" ];
+		extraGroups = [ "networkmanager" "wheel" "video" ];
 	};
 	
 	# ----- SYSTEM -----
@@ -131,6 +131,28 @@ in {
 		enable = true;
 		#package = pkgs.usbmuxd2;
 	};
+
+	# ----- SOUND -----
+	# ~ ALSA ~
+	#sound.enable = false;
+	services.pulseaudio.enable = false;
+	# ~ Pipewire ~
+	#security.rkit.enable = true;
+	services.pipewire = {
+		enable = true;
+		alsa.enable = true;
+		alsa.support32Bit = true;
+		pulse.enable = true;
+		jack.enable = true;
+	};
+
+	# ----- TOUCHPAD -----
+	# Enable touchpad support (enabled default in most desktopManager).
+	services.libinput.enable = true;
+
+	# ----- PRINTING -----
+	# Enable CUPS to print documents.
+	services.printing.enable = true;
 
 	# ----- DOCUMENTATION -----
 	documentation = {
@@ -243,5 +265,80 @@ in {
 		w3m #............... Text-mode web browser
 		#xplr #............. Hackable, minimal, fast TUI file explore
 		#zellij #........... user-friendly terminal multiplexer
+
+		# ~ Desktop ~
+		anki #......................................... flashcards
+		#arduino #..................................... arduino IDE
+		#aseprite #.................................... pixelart and animation editor
+		#blender #..................................... 3d modeling
+		#bluez #....................................... official linux bluetooth protocol stack
+		brave #........................................ browser
+		discord
+		#firefox #..................................... browser
+		#flatpak
+		#floorp #...................................... firefox-based browser
+		foot #......................................... wayland terminal
+		#freecad
+		#freecad-wayland #............................. General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
+		#freecad-qt6
+		#gimp #........................................ GNU Image Manipulation Program
+		jellyfin-media-player
+		kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
+		#kicad #....................................... open source electronics design automation suite
+		libnotify #.................................... a library that sends desktop notifications to a notification daemon
+		#librecad #.................................... 2D CAD package based on Qt
+		libreoffice
+		#logisim-evolution #........................... Digital logic designer and simulator
+		#materialgram #................................. Alternate Telegram client with material theme
+		mpv #.......................................... video and music player
+		obsidian #..................................... notes
+		obs-studio
+		#protonvpn-gui
+		#qucs-s #...................................... Analog and Digital circuit simulator
+		slack
+		telegram-desktop
+		#tg #.......................................... terminal client for telegram
+		#(tic-80.override { withPro = true; } ) #...... Fantasy game console
+		#thunderbird #................................. email client
+		#tor-browser-bundle-bin
+		#virtualbox #.................................. virtual machines
+		vlc #.......................................... media player
+		#wezterm #..................................... terminal emulator
+		zathura #...................................... pdf/epub viewer
 	];
+
+	# ----- GAMING -----
+	# https://nixos.wiki/wiki/Steam
+	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+		prismlauncher #........... Minecraft Launcher
+		#protonup-qt #............ Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
+		#(retroarch.override {
+			#cores = with libretro; [
+				#melonds
+				#mgba
+			#];
+		#})
+		"steam"
+		"steam-original"
+		"steam-run"
+	];
+	programs.steam = {
+		enable = true;
+		remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+		dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+	};
+
+	# ----- VIRTUALBOX -----
+	virtualisation.virtualbox = {
+		host = {
+			enable = true;
+			enableExtensionPack = true;
+		};
+		#guest = {
+			#enable = true;
+			#dragAndDrop = true;
+		#};
+	};
+	users.extraGroups.vboxusers.members = [ "${USER}" ];
+	boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; # temp fix: https://discourse.nixos.org/t/issue-with-virtualbox-in-24-11/57607
 }
