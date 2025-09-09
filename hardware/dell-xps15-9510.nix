@@ -5,54 +5,6 @@
 	# - secure boot
 	# - TPM
 
-	# ----- SYSTEM -----
-	nixpkgs.config = {
-		allowUnfree = true;
-		nvidia.acceptLicense = true;
-	};
-	environment.systemPackages = with pkgs; [
-		cifs-utils  # makes mounting samba shares from cli easier
-		# samba
-	];
-
-	# Make sure certain directories exist
-	systemd.tmpfiles.rules = [
-		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /dsk/               755 root users"
-		"d /dsk/Portals        755 root users"
-		"d /dsk/Portals/Portal 775 root users"
-		"d /dsk/Portals/School 775 root users"
-	];
-
-	# /etc/nixos/smb-secrets
-	# username=<USERNAME>
-	# domain=<DOMAIN>  # (optional)
-	# password=<PASSWORD>
-
-	fileSystems."/dsk/Portals/Portal" = {
-		device = "//srv/Portal";
-		fsType = "cifs";
-		options = let
-			# this line prevents hanging on network split
-			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-		in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-	};
-
-	fileSystems."/dsk/Portals/School" = {
-		device = "//srv/School";
-		fsType = "cifs";
-		options = let
-			# this line prevents hanging on network split
-			automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-		in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-	};
-
-	# ----- BLUETOOTH -----
-	# https://mynixos.com/nixpkgs/option/hardware.bluetooth.settings
-	hardware.bluetooth.settings.General = {
-		ControllerMode = "bredr";
-	};
-
 	# ----- BATTERY -----
 	services.power-profiles-daemon.enable = true;
 
