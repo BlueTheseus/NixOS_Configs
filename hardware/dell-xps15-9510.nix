@@ -1,3 +1,5 @@
+# https://github.com/NixOS/nixos-hardware/tree/master/dell/xps/15-9510
+
 { config, pkgs, lib, ... }:
 {
 	# ----- TO DO -----
