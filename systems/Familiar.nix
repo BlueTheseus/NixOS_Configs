@@ -332,7 +332,7 @@ in {
 	virtualisation.virtualbox = {
 		host = {
 			enable = true;
-			enableExtensionPack = true;
+			enableExtensionPack = false; # Enabling this results in compiling from source, which is slow and resource-intensive
 		};
 		#guest = {
 			#enable = true;
