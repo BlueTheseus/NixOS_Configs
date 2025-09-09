@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-	imports = [ ./desktop-packages.nix ];
-
 	# ----- KDE PLASMA -----
 	services = {
 		displayManager = {
