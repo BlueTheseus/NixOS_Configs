@@ -240,7 +240,7 @@ in {
 		#glow #............. cli markdown renderer
 		ifuse
 		#lazygit #.......... TUI git
-		libmobiledevice #... IOS device connection
+		libimobiledevice #... IOS device connection
 		libnotify #......... notify-send
 		libsixel #.......... SIXEL library for console graphics, and converter programs
 		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
