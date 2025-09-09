@@ -300,7 +300,7 @@ in {
 	# ----- GAMING -----
 	# https://nixos.wiki/wiki/Steam
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-		prismlauncher #........... Minecraft Launcher
+		"prismlauncher" #........... Minecraft Launcher
 		#protonup-qt #............ Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
 		#(retroarch.override {
 			#cores = with libretro; [
