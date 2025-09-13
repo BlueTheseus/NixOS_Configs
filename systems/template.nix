@@ -80,6 +80,9 @@ in {
 	users.users."${USER}" = {
 		isNormalUser = true;
 		extraGroups = [ "networkmanager" "wheel" "video" ];
+		openssh.authorizedKeys.keyFiles = [
+			/home/${USER}/.ssh/authorized_keys/key.pub
+		];
 	};
 	
 	# ----- SYSTEM -----
