@@ -14,13 +14,13 @@
 
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
-		"d /srv/jellyfin 0750 jellyfin jellyfin"
+		"d /srv/jellyfin 0700 jellyfin jellyfin"
 	];
 
 	# ----- SETTINGS -----
 	services.jellyfin = {
 		enable = true;
-		# openFirewall = true;
+		openFirewall = false;
 		dataDir = "/srv/jellyfin";
 	};
 
