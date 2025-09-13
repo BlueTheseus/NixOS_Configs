@@ -50,6 +50,7 @@
 	services = {
 		fwupd.enable = true; # Firmware Updater
 		tailscale.enable = true;
+		#tailscale.package = pkgs.tailscale.overrideAttrs { doCheck = false; }; # Temporary fix to allow upgrading from a broken kernel (pre-6.12.46) to a fixed kernel (6.12.46 and above). Must also comment out tailscale in system packages.
 	};
 
 	# ----- PACKAGES -----
