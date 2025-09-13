@@ -68,9 +68,9 @@ in {
 				/home/${USER}/.ssh/authorized_keys/altar.pub
 			];
 		};
-		"vaults" = {
-			isNormalUser = false;
-		};
+		#"vaults" = {
+			#isNormalUser = false;
+		#};
 	};
 	
 	# ----- SYSTEM -----
@@ -259,14 +259,14 @@ in {
 			"guest ok" = "no";
 			"valid users" = "${USER}";
 		};
-		"Vaults" = {
-			path = "/srv/samba/Vaults";
-			browseable = "no";
-			public = "no";
-			"read only" = "no";
-			"guest ok" = "no";
-			"valid users" = "vaults";
-		};
+		#"Vaults" = {
+			#path = "/srv/samba/Vaults";
+			#browseable = "no";
+			#public = "no";
+			#"read only" = "no";
+			#"guest ok" = "no";
+			#"valid users" = "vaults";
+		#};
 	};
 
 	# ----- HEARTBEAT -----
