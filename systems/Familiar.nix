@@ -14,7 +14,7 @@
 let
 	HOSTNAME = "Familiar";
 	HOSTID = "88452ff9"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
-	USER = "xenia";
+	USER = "Xenia";
 	TIMEZONE = "America/Los_Angeles";
 in {
 	imports = [
