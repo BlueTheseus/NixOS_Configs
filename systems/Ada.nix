@@ -13,7 +13,8 @@
 { config, pkgs, ... }:
 let
 	HOSTNAME = "Ada";
-	HOSTID = ""; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
+	#HOSTDOMAIN = "";
+	HOSTID = "96bfef23"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "nico";
 	TIMEZONE = "America/Los_Angeles";
 in {
@@ -52,6 +53,7 @@ in {
 	networking = {
 		hostName = "${HOSTNAME}";
 		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
+		#domain = "${HOSTDOMAIN}";
 	};
 
 	# ----- USERS -----
