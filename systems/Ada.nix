@@ -227,6 +227,13 @@ in {
 	];
 
 	# ----- SAMBA -----
+	systemd.tmpfiles.rules = [
+		# "d /folder/to/create <chmod-value> <user> <group>"
+		"d /srv/samba/Portal  755 root users"
+		"d /srv/samba/School  755 root users"
+		"d /srv/samba/Library 755 root users"
+	];
+
 	services.samba.settings = {
 		"Portal" = {
 			path = "/srv/samba/Portal";
