@@ -35,7 +35,7 @@ in {
 			efi.canTouchEfiVariables = true;
 		};
 		# Optionally use a different kernel:
-		kernelPackages = pkgs.linuxPackages_latest_hardened;
+		#kernelPackages = pkgs.linuxPackages_latest_hardened; # No longer supported, must specify exact hardened kernel
 		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
