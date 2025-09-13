@@ -268,4 +268,32 @@ in {
 			"valid users" = "vaults";
 		};
 	};
+
+	# ----- HEARTBEAT -----
+	# Have you tried turning it off and back on again?
+	systemd.timers."heartbeat" = {
+		wantedBy = [ "timers.target" ];
+		timerConfig = {
+			Unit = "heartbeat.service";
+			#OnCalendar = "15m";
+			Persistent = false;
+			OnBootSec = "15m";
+			OnUnitActiveSec = "15m";
+		};
+	};
+	systemd.services."heartbeat" = {
+		script = ''
+			#!${pkgs.runtimeShell}
+			#if [ ! $(echo -n >/dev/tcp/8.8.8.8/53; echo $?) ]; then
+			if [ $(ping -c 3 google.com | grep -q '100% packet loss') || $(ping -c 3 google.com | grep -q 'Name or service not known') ]; then
+				nmcli connection down
+				sleep 2s
+				nmcli connection up e00cb391-acea-4fc5-a2b9-982fd9ece7e9
+			fi
+		'';
+		serviceConfig = {
+			Type = "oneshot";
+			User = "root";
+		};
+	};
 }
