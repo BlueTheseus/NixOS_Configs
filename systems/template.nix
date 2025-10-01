@@ -236,6 +236,7 @@ in {
 		libimobiledevice #............................. IOS device connection
 		libnotify #.................................... notify-send
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
+		#lz4 #......................................... Extremely fast compression algorithm
 		#mtm #......................................... Perhaps the smallest useful terminal multiplexer in the world
 		p7zip #........................................ zip utility
 		#pistol #...................................... file previewer
@@ -246,6 +247,7 @@ in {
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #.................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		#ventoy #...................................... live-usb
+		#zstd #........................................ Zstandard real-time compression algorithm
 
                 # ~ Productivity ~
 		#abduco #...................................... Allows programs to be run independently from its controlling terminal
