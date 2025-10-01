@@ -26,6 +26,7 @@ in {
 		../modules/samba.nix
 		../modules/jellyfin.nix
 		#../modules/nextcloud.nix
+		../modules/freshrss.nix
 	];
 
 	# ----- BOOT -----
