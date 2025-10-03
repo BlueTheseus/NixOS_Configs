@@ -270,6 +270,7 @@ in {
 		anki #......................................... flashcards
 		#arduino #..................................... arduino IDE
 		#aseprite #.................................... pixelart and animation editor
+		#audacity #.................................... Sound editor with graphical UI
 		#blender #..................................... 3d modeling
 		#bluez #....................................... official linux bluetooth protocol stack
 		brave #........................................ browser
@@ -284,6 +285,7 @@ in {
 		#gimp #........................................ GNU Image Manipulation Program
 		jellyfin-media-player
 		kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
+		#kdePackages.kdenlive #......................... Free and open source video editor, based on MLT Framework and KDE Frameworks
 		#kicad #....................................... open source electronics design automation suite
 		libnotify #.................................... a library that sends desktop notifications to a notification daemon
 		#librecad #.................................... 2D CAD package based on Qt
