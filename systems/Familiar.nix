@@ -164,6 +164,15 @@ in {
 		};
 	};
 
+	# ----- NIX USER REPOSITORY -----
+	# https://github.com/nix-community/NUR
+	nixpkgs.config.packageOverrides = pkgs: {
+		nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz")
+		{
+			inherit pkgs;
+		};
+	};
+
 	# ----- FONTS -----
 	fonts.packages = with pkgs; [
 		cozette #........... A bitmap programming font optimized for coziness
@@ -254,7 +263,13 @@ in {
 		unipicker #......... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		#ventoy #........... live-usb
 
-                # ~ Productivity ~
+		# ~ Languages ~
+		#julia #............ Julia programming language compiled
+		julia-bin #......... Julia programming language binary
+		#octave #........... GNU Octave
+		octaveFull
+
+		# ~ Productivity ~
 		#abduco #........... Allows programs to be run independently from its controlling terminal
 		#aerc #............. Email client for your terminal
 		#dvtm #............. Dynamic virtual terminal manager
@@ -265,6 +280,9 @@ in {
 		w3m #............... Text-mode web browser
 		#xplr #............. Hackable, minimal, fast TUI file explore
 		#zellij #........... user-friendly terminal multiplexer
+
+		# ~ Nix Users Repository ~
+		nur.repos.andreasrid.stm32cubeide #............ CubeIDE for STM32
 
 		# ~ Desktop ~
 		anki #......................................... flashcards
