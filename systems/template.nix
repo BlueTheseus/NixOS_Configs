@@ -225,6 +225,7 @@ in {
 
 		# ~ Utilities ~
 		bat #.......................................... pretty cat for the terminal
+		bc #........................................... Basic Calculator
 		#borgbackup #.................................. Deduplicating archiver with compression and encryption
 		cbonsai #...................................... screensaver
 		#cope #........................................ A colourful wrapper for terminal programs
@@ -253,6 +254,7 @@ in {
 		#abduco #...................................... Allows programs to be run independently from its controlling terminal
 		#aerc #........................................ Email client for your terminal
 		#dvtm #........................................ Dynamic virtual terminal manager
+		gnuplot #......................................
 		lf #........................................... file manager
 		#neomutt #..................................... Small but very powerful text-based mail client
 		#nnn #......................................... minimal file manager
