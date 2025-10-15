@@ -33,4 +33,10 @@
 
 		# banner = "";  # Accepts strings concatenated with '\n'. Displayed to remote user before authentication is allowed
 	};
+
+	# ----- MOSH -----
+	programs.mosh = {
+		enable = true;
+		openFirewall = false;
+	};
 }

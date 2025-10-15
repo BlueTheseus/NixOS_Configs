@@ -220,6 +220,7 @@ in {
 		cifs-utils #................................... Samba
 		curl
 		dnsutils
+		mosh #......................................... Mobile shell (ssh replacement)
 		wget
 		yt-dlp
 
