@@ -251,7 +251,7 @@ in {
 		#ventoy #...................................... live-usb
 		#zstd #........................................ Zstandard real-time compression algorithm
 
-                # ~ Productivity ~
+		# ~ Productivity ~
 		#abduco #...................................... Allows programs to be run independently from its controlling terminal
 		#aerc #........................................ Email client for your terminal
 		#dvtm #........................................ Dynamic virtual terminal manager
