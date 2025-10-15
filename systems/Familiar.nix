@@ -291,7 +291,6 @@ in {
 		#aseprite #.................................... pixelart and animation editor
 		#audacity #.................................... Sound editor with graphical UI
 		#blender #..................................... 3d modeling
-		#bluez #....................................... official linux bluetooth protocol stack
 		brave #........................................ browser
 		discord
 		#firefox #..................................... browser
