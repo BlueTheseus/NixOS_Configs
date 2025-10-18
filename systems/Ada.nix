@@ -209,12 +209,13 @@ in {
 		#qemu #........................................ Generic and open source machine emulator and virtualizer
 		rclone #....................................... Like rsync but for cloud storage services
 		#restic #...................................... A backup program that is fast, efficient, and secure
+		rmlint
 		rsync
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #.................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		#ventoy #...................................... live-usb
 
-                # ~ Productivity ~
+		# ~ Productivity ~
 		#abduco #...................................... Allows programs to be run independently from its controlling terminal
 		#aerc #........................................ Email client for your terminal
 		#dvtm #........................................ Dynamic virtual terminal manager
