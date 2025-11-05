@@ -283,7 +283,7 @@ in {
 		#zellij #........... user-friendly terminal multiplexer
 
 		# ~ Nix Users Repository ~
-		nur.repos.andreasrid.stm32cubeide #............ CubeIDE for STM32
+		#nur.repos.andreasrid.stm32cubeide #............ CubeIDE for STM32
 
 		# ~ Desktop ~
 		anki #......................................... flashcards
@@ -318,8 +318,9 @@ in {
 		slack
 		telegram-desktop
 		#tg #.......................................... terminal client for telegram
-		#(tic-80.override { withPro = true; } ) #...... Fantasy game console
 		#thunderbird #................................. email client
+		#(tic-80.override { withPro = true; } ) #...... Fantasy game console
+		tofi #......................................... Tiny dynamic menu for Wayland
 		#tor-browser-bundle-bin
 		#virtualbox #.................................. virtual machines
 		vlc #.......................................... media player
