@@ -47,5 +47,5 @@
 		konsole
 		kwalletmanager
 		plasma-systemmonitor
-	]
+	];
 }
