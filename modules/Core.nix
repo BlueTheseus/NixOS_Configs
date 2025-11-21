@@ -65,7 +65,8 @@
 		# ~ System ~
 		auto-cpufreq #...... auto cpu speed & power optimizer
 		btrfs-progs #....... BTRFS utilities
-		gcc
+		gcc #............... GNU C Compiler
+		gdb #............... GNU Debugger
 		git
 		gnumake
 		gptfdisk #.......... TUI disk management
