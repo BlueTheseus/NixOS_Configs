@@ -293,7 +293,7 @@ in {
 		#blender #..................................... 3d modeling
 		brave #........................................ browser
 		discord
-		#firefox #..................................... browser
+		firefox #..................................... browser -- backup for when brave won't properly render websites
 		#flatpak
 		#floorp #...................................... firefox-based browser
 		foot #......................................... wayland terminal
