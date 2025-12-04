@@ -249,6 +249,7 @@ in {
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #.................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		#ventoy #...................................... live-usb
+		#zbar #........................................ Bar code reader (including QR code)
 		#zstd #........................................ Zstandard real-time compression algorithm
 
 		# ~ Productivity ~
