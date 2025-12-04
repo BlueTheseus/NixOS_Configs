@@ -240,6 +240,7 @@ in {
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
 		#lz4 #......................................... Extremely fast compression algorithm
 		#mtm #......................................... Perhaps the smallest useful terminal multiplexer in the world
+		#outils #...................................... Port of OpenBSD-exclusive tools -- included for md5
 		p7zip #........................................ zip utility
 		#pistol #...................................... file previewer
 		#qemu #........................................ Generic and open source machine emulator and virtualizer
