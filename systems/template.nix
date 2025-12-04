@@ -260,6 +260,8 @@ in {
 		#neomutt #..................................... Small but very powerful text-based mail client
 		#nnn #......................................... minimal file manager
 		tmux #......................................... widely-used terminal multiplexer
+		#vscodium #.................................... Open source source code editor developed by Microsoft for Windows, Linux and macOS (VS Code without MS branding/telemetry/licensing)
+		#vscodium-fhs #................................ Wrapped variant of vscodium which launches in a FHS compatible environment. Should allow for easy usage of extensions without nix-specific modifications.
 		w3m #.......................................... Text-mode web browser
 		#xplr #........................................ Hackable, minimal, fast TUI file explore
 		#zellij #...................................... user-friendly terminal multiplexer
