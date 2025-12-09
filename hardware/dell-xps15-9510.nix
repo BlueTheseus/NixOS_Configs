@@ -8,21 +8,23 @@
 	# - TPM
 
 	# ----- BATTERY -----
-	services.power-profiles-daemon.enable = true;
+	services.power-profiles-daemon.enable = false;
+	powerManagement.enable = true;
 
 	# ~ Thermald ~
 	services.thermald.enable = true;
 
 	# ~ TLP ~
+	# Note: must disable services.power-profiles-daemon
 	services.tlp = {
-		enable = false;
+		enable = true;
 		settings = {
 			TLP_DEFAULT_MODE = "BAT";
-			DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth wifi";
+			# DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth wifi";
 			# DEVICES_TO_ENABLE_ON_AC = "";
 			# DEVICES_TO_DISABLE_ON_BAT = "bluetooth wifi";
-			DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
-			USB_AUTOSUSPEND = 1;
+			# DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
+			USB_AUTOSUSPEND = 0;
 			# USB_DENYLIST = "1111:2222 3333:4444";
 			# USB_ALLOWLIST = "1111:2222 3333:4444";
 			# USB_AUTOSUSPEND_DISBALE_ON_SHUTDOWN = 1;  # workaround if suspended USB devices disturb shutdown process
@@ -30,6 +32,7 @@
 	};
 
 	# ~ Auto-CPUfreq ~
+	# Note: do not enable alongside TLP--choose one.
 	services.auto-cpufreq = {
 		enable = false;
 		settings = {
