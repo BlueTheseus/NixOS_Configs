@@ -317,6 +317,7 @@ in {
 		#thunderbird #................................. email client
 		tofi #..................... Tiny dynamic menu for Wayland
 		#tor-browser-bundle-bin
+		#typstwriter #................................. Editor for the typst formatting language
 		#virtualbox #.................................. virtual machines
 		vlc #.......................................... media player
 		#wezterm #..................................... terminal emulator
