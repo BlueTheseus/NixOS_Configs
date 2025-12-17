@@ -211,7 +211,6 @@ in {
 		exiftool #..................................... file metadata
 		fastfetch
 		mediainfo
-		#neofetch
 		#starfetch
 		#uwufetch
 
@@ -231,6 +230,7 @@ in {
 		cbonsai #...................................... screensaver
 		#cope #........................................ A colourful wrapper for terminal programs
 		ffmpeg
+		#findutils #................................... GNU Find Utilities, the basic directory searching utilities of the GNU operating system -- provides: locate, updatedb
 		fzf
 		#glow #........................................ cli markdown renderer
 		ifuse
@@ -243,6 +243,7 @@ in {
 		#outils #...................................... Port of OpenBSD-exclusive tools -- included for md5
 		p7zip #........................................ zip utility
 		#pistol #...................................... file previewer
+		#plocate #..................................... Much faster locate
 		#qemu #........................................ Generic and open source machine emulator and virtualizer
 		rclone #....................................... Like rsync but for cloud storage services
 		#restic #...................................... A backup program that is fast, efficient, and secure
@@ -253,11 +254,21 @@ in {
 		#zbar #........................................ Bar code reader (including QR code)
 		#zstd #........................................ Zstandard real-time compression algorithm
 
+		# ~ Languages ~
+		#julia #................... Julia programming language compiled
+		julia-bin #................ Julia programming language binary
+		#octave #.................. GNU Octave
+		octaveFull
+		#python313 #............... Python 3.14
+		#python313Packages.numpy
+		#python313Packages.matplotlib
+		#python313Packages.scipy
+
 		# ~ Productivity ~
 		#abduco #...................................... Allows programs to be run independently from its controlling terminal
 		#aerc #........................................ Email client for your terminal
 		#dvtm #........................................ Dynamic virtual terminal manager
-		gnuplot #......................................
+		#gnuplot #.....................................
 		lf #........................................... file manager
 		#neomutt #..................................... Small but very powerful text-based mail client
 		#nnn #......................................... minimal file manager
@@ -277,7 +288,7 @@ in {
 		#bluez #....................................... official linux bluetooth protocol stack
 		brave #........................................ browser
 		discord
-		#firefox #..................................... browser
+		firefox #...................................... browser -- backup for when brave won't properly render websites
 		#flatpak
 		#floorp #...................................... firefox-based browser
 		foot #......................................... wayland terminal
@@ -304,6 +315,7 @@ in {
 		#tg #.......................................... terminal client for telegram
 		#(tic-80.override { withPro = true; } ) #...... Fantasy game console
 		#thunderbird #................................. email client
+		tofi #..................... Tiny dynamic menu for Wayland
 		#tor-browser-bundle-bin
 		#virtualbox #.................................. virtual machines
 		vlc #.......................................... media player

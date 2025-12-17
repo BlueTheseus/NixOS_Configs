@@ -227,7 +227,6 @@ in {
 		exiftool #................. file metadata
 		fastfetch
 		mediainfo
-		#neofetch
 		#starfetch
 		#uwufetch
 
