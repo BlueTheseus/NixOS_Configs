@@ -156,6 +156,9 @@ in {
 	# ----- EXTRA SYSTEM PACKAGES -----
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
+		# ~ Toolbox ~
+		testdisk #..................................... Data recovery utilities
+
 		# ~ System ~
 		#auto-cpufreq #................................ auto cpu speed & power optimizer
 		#busybox #..................................... Tiny versions of common UNIX utilities in a single small executable
