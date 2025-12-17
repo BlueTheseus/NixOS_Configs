@@ -11,7 +11,7 @@
 	};
 	
 	
-	# ----- QT CONFIGURATION -----
+	# ----- QT Configuration -----
 	#qt = {
 	#	enable = true;
 		#platformTheme = "gnome";
@@ -26,15 +26,36 @@
 	#};
 
 	# ~ Extra Packages ~
+	# Want the cosmic clipboard applet to become packaged
 	environment.systemPackages = with pkgs; [
-		#bemenu #............................. Dynamic menu library and client program inspired by dmenu
-		#bemoji #............................. Emoji picker with support for bemenu/wofi/rofi/dmenu and wayland/X11
-		qpwgraph #............................ QT-based pipewire manager
-		#tofi #............................... Tiny dynamic menu for Wayland
+		#bemenu #.......................................... Dynamic menu library and client program inspired by dmenu
+		#bemoji #.......................................... Emoji picker with support for bemenu/wofi/rofi/dmenu and wayland/X11
+		cosmic-ext-applet-caffeine #....................... Applet to prevent display from going to sleep
+		cosmic-ext-applet-external-monitor-brightness #.... Applet to control the brightness of external monitors
+		comsic-ext-applet-privacy-indicator #.............. Detects Microphone and Camera usage, as well as Screen Sharing/Recording
+		cosmic-ext-ctl #................................... CLI for COSMIC Desktop configuration management
+		cosmic-ext-tweaks #................................ Tweaking tool for the COSMIC Desktop Environment
+		#cosmic-reader #................................... PDF reader for the COSMIC Desktop Environment
+		#cosmic-store #.................................... App Store for the COSMIC Desktop Environment
+		qpwgraph #......................................... QT-based pipewire manager
+		quick-webapps #.................................... Web App Manager for the COSMIC desktop
+		#tasks #........................................... Simple task management application for the COSMIC desktop
+		#tofi #............................................ Tiny dynamic menu for Wayland
 	];
 	
 	# ~ Exclude Packages ~
 	#environment.cosmic.excludePackages = with pkgs; [
 	#	cosmic-edit
 	#];
+
+	# ----- Flatpak -----
+	#services.flatpak.enable = true;
+	#systemd.services.flatpak-repo = {
+	#	wantedBy = [ "multi-user.target" ];
+	#	path = [ pkgs.flatpak ];
+	#	script = ''
+	#		flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	#		flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+	#	'';
+	#};
 }
