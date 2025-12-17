@@ -20,7 +20,8 @@ in {
 	imports = [
 		../hardware/dell-xps15-9510.nix
 		../modules/Core.nix
-		../modules/Desktops/kde-plasma.nix
+		#../modules/Desktops/kde-plasma.nix
+		../modules/Desktops/cosmic.nix
 	];
 
 	# ----- BOOT -----
