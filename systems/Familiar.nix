@@ -246,6 +246,7 @@ in {
 		cbonsai #........... screensaver
 		#cope #............. A colourful wrapper for terminal programs
 		ffmpeg
+		#findutils #......... GNU Find Utilities, the basic directory searching utilities of the GNU operating system -- provides: locate, updatedb
 		fzf
 		#glow #............. cli markdown renderer
 		ifuse
@@ -256,6 +257,7 @@ in {
 		#mtm #.............. Perhaps the smallest useful terminal multiplexer in the world
 		p7zip #............. zip utility
 		#pistol #........... file previewer
+		#plocate #.......... Much faster locate
 		#qemu #.............. Generic and open source machine emulator and virtualizer
 		rclone #............ Like rsync but for cloud storage services
 		#restic #........... A backup program that is fast, efficient, and secure
