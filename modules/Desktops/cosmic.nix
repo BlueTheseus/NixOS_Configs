@@ -32,7 +32,7 @@
 		#bemoji #.......................................... Emoji picker with support for bemenu/wofi/rofi/dmenu and wayland/X11
 		cosmic-ext-applet-caffeine #....................... Applet to prevent display from going to sleep
 		cosmic-ext-applet-external-monitor-brightness #.... Applet to control the brightness of external monitors
-		comsic-ext-applet-privacy-indicator #.............. Detects Microphone and Camera usage, as well as Screen Sharing/Recording
+		cosmic-ext-applet-privacy-indicator #.............. Detects Microphone and Camera usage, as well as Screen Sharing/Recording
 		cosmic-ext-ctl #................................... CLI for COSMIC Desktop configuration management
 		cosmic-ext-tweaks #................................ Tweaking tool for the COSMIC Desktop Environment
 		#cosmic-reader #................................... PDF reader for the COSMIC Desktop Environment
