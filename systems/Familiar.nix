@@ -316,6 +316,7 @@ in {
 		mpv #...................... video and music player
 		obsidian #................. notes
 		obs-studio
+		protontricks #.............
 		#protonvpn-gui
 		#qucs-s #.................. Analog and Digital circuit simulator
 		slack
