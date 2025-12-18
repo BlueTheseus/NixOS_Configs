@@ -304,7 +304,7 @@ in {
 		#freecad-wayland #......... General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
 		#freecad-qt6
 		#gimp #.................... GNU Image Manipulation Program
-		jellyfin-media-player
+		#jellyfin-media-player
 		kdePackages.kcharselect #.. Tool to select and copy special characters from all installed fonts
 		#kdePackages.kdenlive #.... Free and open source video editor, based on MLT Framework and KDE Frameworks
 		#kicad #................... open source electronics design automation suite
