@@ -41,6 +41,8 @@
 		quick-webapps #.................................... Web App Manager for the COSMIC desktop
 		#tasks #........................................... Simple task management application for the COSMIC desktop
 		#tofi #............................................ Tiny dynamic menu for Wayland
+		#wdisplays #....................................... Graphical application for configuring displays in Wayland compositors
+		#wlr-randr #.......................................
 	];
 	
 	# ~ Exclude Packages ~
