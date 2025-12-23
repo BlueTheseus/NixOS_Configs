@@ -319,7 +319,7 @@ in {
 		protontricks #.............
 		#protonvpn-gui
 		#qucs-s #.................. Analog and Digital circuit simulator
-		slack
+		#slack
 		telegram-desktop
 		#tg #...................... terminal client for telegram
 		#thunderbird #............. email client
