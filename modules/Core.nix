@@ -63,27 +63,32 @@
 		neovim
 
 		# ~ System ~
-		auto-cpufreq #...... auto cpu speed & power optimizer
-		btrfs-progs #....... BTRFS utilities
-		gcc #............... GNU C Compiler
-		gdb #............... GNU Debugger
+		#auto-cpufreq #................................ auto cpu speed & power optimizer
+		btrfs-progs #.................................. BTRFS utilities
+		cgdisk
+		gcc #.......................................... GNU C Compiler
+		gdb #.......................................... GNU Debugger
 		git
 		gnumake
-		gptfdisk #.......... TUI disk management
-		pciutils #.......... A collection of programs for inspecting and manipulating configuration of PCI devices
-		powertop #.......... power monitoring and management
-		tlp #............... battery and power daemon
-		util-linux #........ A set of system utilities for Linux
-		exfat #............. Free exFAT file system implementation
-		zfs #............... ZFS utilities
+		gptfdisk #..................................... TUI disk management
+		pciutils #..................................... A collection of programs for inspecting and manipulating configuration of PCI devices
+		powertop #..................................... power monitoring and management
+		tlp #.......................................... battery and power daemon
+		util-linux #................................... A set of system utilities for Linux
+		exfat #........................................ Free exFAT file system implementation
+		zfs #.......................................... ZFS utilities
+	
+		# ~ Documentation ~
+		man-pages #.................................... Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
+		man-pages-posix
 
 		# ~ Encryption ~
 		cryptsetup
 		gnupg
-		keepassxc #......... Provides keepassxc-cli
+		keepassxc #.................................... Provides keepassxc-cli
 		tomb
-		pass #.............. Stores, retrieves, generates, and synchronizes passwords securely
-		pinentry-curses #... needed by tomb
+		#pass #........................................ Stores, retrieves, generates, and synchronizes passwords securely
+		pinentry-curses #.............................. needed by tomb
 
 		# ~ Networking ~
 		networkmanager
@@ -91,6 +96,9 @@
 		wpa_supplicant
 
 		# ~ Terminal Utilities ~
-		btop #.............. system monitoring
+		btop #......................................... system monitoring
+		fzf
+		p7zip #........................................ zip utility
+		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 	];
 }
