@@ -187,16 +187,15 @@ in {
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
 		# ~ System ~
-		#auto-cpufreq #................................ auto cpu speed & power optimizer
-		#busybox #..................................... Tiny versions of common UNIX utilities in a single small executable
-		#cgdisk
-		#clang #....................................... A C language family frontend for LLVM (wrapper script)
+		auto-cpufreq #................................. auto cpu speed & power optimizer
+		busybox #...................................... Tiny versions of common UNIX utilities in a single small executable
+		clang #........................................ A C language family frontend for LLVM (wrapper script)
 		cpulimit #..................................... archived, use limitcpu -- however only this works to successfully limit children processes
-		#libclang #.................................... A C langauge family frontend for LLVM -- provides clang and clang++
-		#libgcc #...................................... GNU Compiler Collection
-		#libuuid #..................................... A set of system utilities for Linux (util-linux-minimal)
-		#limitcpu
-		#toybox #...................................... Lightweight implementation of some Unix command line utilities
+		libclang #..................................... A C langauge family frontend for LLVM -- provides clang and clang++
+		libgcc #....................................... GNU Compiler Collection
+		libuuid #...................................... A set of system utilities for Linux (util-linux-minimal)
+		limitcpu
+		toybox #....................................... Lightweight implementation of some Unix command line utilities
 		usbutils #..................................... Tools for working with USB devices, such as lsusb
 
 		# ~ Documentation ~
@@ -204,15 +203,15 @@ in {
 		man-pages-posix
 
 		# ~ Encryption ~
-		#gpg-tui #..................................... Terminal user interface for GnuPG
+		gpg-tui #...................................... Terminal user interface for GnuPG
 
 		# ~ Info ~
-		#bunnyfetch
+		bunnyfetch
 		exiftool #..................................... file metadata
 		fastfetch
 		mediainfo
-		#starfetch
-		#uwufetch
+		starfetch
+		uwufetch
 
 		# ~ Networking ~
 		bluez #........................................ Official linux bluetooth protocol stack
@@ -226,115 +225,116 @@ in {
 		# ~ Utilities ~
 		bat #.......................................... pretty cat for the terminal
 		bc #........................................... Basic Calculator
-		#borgbackup #.................................. Deduplicating archiver with compression and encryption
+		borgbackup #................................... Deduplicating archiver with compression and encryption
 		cbonsai #...................................... screensaver
-		#cope #........................................ A colourful wrapper for terminal programs
+		cope #......................................... A colourful wrapper for terminal programs
 		ffmpeg
-		#findutils #................................... GNU Find Utilities, the basic directory searching utilities of the GNU operating system -- provides: locate, updatedb
+		findutils #.................................... GNU Find Utilities, the basic directory searching utilities of the GNU operating system -- provides: locate, updatedb
 		fzf
-		#glow #........................................ cli markdown renderer
+		glow #......................................... cli markdown renderer
 		ifuse
-		#lazygit #..................................... TUI git
+		lazygit #...................................... TUI git
 		libimobiledevice #............................. IOS device connection
 		libnotify #.................................... notify-send
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
-		#lz4 #......................................... Extremely fast compression algorithm
-		#mtm #......................................... Perhaps the smallest useful terminal multiplexer in the world
-		#outils #...................................... Port of OpenBSD-exclusive tools -- included for md5
+		lz4 #.......................................... Extremely fast compression algorithm
+		mtm #.......................................... Perhaps the smallest useful terminal multiplexer in the world
+		outils #....................................... Port of OpenBSD-exclusive tools -- included for md5
 		p7zip #........................................ zip utility
-		#pistol #...................................... file previewer
-		#plocate #..................................... Much faster locate
-		#qemu #........................................ Generic and open source machine emulator and virtualizer
+		pistol #....................................... file previewer
+		plocate #...................................... Much faster locate
+		qemu #......................................... Generic and open source machine emulator and virtualizer
 		rclone #....................................... Like rsync but for cloud storage services
-		#restic #...................................... A backup program that is fast, efficient, and secure
+		restic #....................................... A backup program that is fast, efficient, and secure
+		rmlint
 		rsync
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #.................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
-		#ventoy #...................................... live-usb
-		#zbar #........................................ Bar code reader (including QR code)
-		#zstd #........................................ Zstandard real-time compression algorithm
+		ventoy #....................................... live-usb
+		zbar #......................................... Bar code reader (including QR code)
+		zstd #......................................... Zstandard real-time compression algorithm
 
 		# ~ Languages ~
-		#julia #................... Julia programming language compiled
-		julia-bin #................ Julia programming language binary
-		#octave #.................. GNU Octave
+		julia #........................................ Julia programming language compiled
+		julia-bin #.................................... Julia programming language binary
+		octave #....................................... GNU Octave
 		octaveFull
-		#python313 #............... Python 3.14
-		#python313Packages.numpy
-		#python313Packages.matplotlib
-		#python313Packages.scipy
+		python313 #.................................... Python 3.14
+		python313Packages.numpy
+		python313Packages.matplotlib
+		python313Packages.scipy
 
 		# ~ Productivity ~
-		#abduco #...................................... Allows programs to be run independently from its controlling terminal
-		#aerc #........................................ Email client for your terminal
-		#dvtm #........................................ Dynamic virtual terminal manager
-		#gnuplot #.....................................
+		abduco #....................................... Allows programs to be run independently from its controlling terminal
+		aerc #......................................... Email client for your terminal
+		dvtm #......................................... Dynamic virtual terminal manager
+		gnuplot #......................................
 		lf #........................................... file manager
-		#neomutt #..................................... Small but very powerful text-based mail client
-		#nnn #......................................... minimal file manager
+		neomutt #...................................... Small but very powerful text-based mail client
+		nnn #.......................................... minimal file manager
 		tmux #......................................... widely-used terminal multiplexer
-		#vscodium #.................................... Open source source code editor developed by Microsoft for Windows, Linux and macOS (VS Code without MS branding/telemetry/licensing)
-		#vscodium-fhs #................................ Wrapped variant of vscodium which launches in a FHS compatible environment. Should allow for easy usage of extensions without nix-specific modifications.
+		vscodium #..................................... Open source source code editor developed by Microsoft for Windows, Linux and macOS (VS Code without MS branding/telemetry/licensing)
+		vscodium-fhs #................................. Wrapped variant of vscodium which launches in a FHS compatible environment. Should allow for easy usage of extensions without nix-specific modifications.
 		w3m #.......................................... Text-mode web browser
-		#xplr #........................................ Hackable, minimal, fast TUI file explore
-		#zellij #...................................... user-friendly terminal multiplexer
+		xplr #......................................... Hackable, minimal, fast TUI file explore
+		zellij #....................................... user-friendly terminal multiplexer
 
 		# ~ Desktop ~
 		anki #......................................... flashcards
-		#arduino #..................................... arduino IDE
-		#aseprite #.................................... pixelart and animation editor
-		#audacity #.................................... Sound editor with graphical UI
-		#blender #..................................... 3d modeling
-		#bluez #....................................... official linux bluetooth protocol stack
+		arduino #...................................... arduino IDE
+		aseprite #..................................... pixelart and animation editor
+		audacity #..................................... Sound editor with graphical UI
+		blender #...................................... 3d modeling
+		bluez #........................................ official linux bluetooth protocol stack
 		brave #........................................ browser
 		discord
 		firefox #...................................... browser -- backup for when brave won't properly render websites
-		#flatpak
-		#floorp #...................................... firefox-based browser
+		flatpak
+		floorp #....................................... firefox-based browser
 		foot #......................................... wayland terminal
-		#freecad
-		#freecad-wayland #............................. General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
-		#freecad-qt6
-		#gimp #........................................ GNU Image Manipulation Program
+		freecad
+		freecad-wayland #.............................. General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
+		freecad-qt6
+		gimp #......................................... GNU Image Manipulation Program
 		jellyfin-media-player
 		kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
-		#kdePackages.kdenlive #......................... Free and open source video editor, based on MLT Framework and KDE Frameworks
-		#kicad #....................................... open source electronics design automation suite
+		kdePackages.kdenlive #......................... Free and open source video editor, based on MLT Framework and KDE Frameworks
+		kicad #........................................ open source electronics design automation suite
 		libnotify #.................................... a library that sends desktop notifications to a notification daemon
-		#librecad #.................................... 2D CAD package based on Qt
+		librecad #..................................... 2D CAD package based on Qt
 		libreoffice
-		#logisim-evolution #........................... Digital logic designer and simulator
-		#materialgram #................................. Alternate Telegram client with material theme
+		logisim-evolution #............................ Digital logic designer and simulator
+		materialgram #................................. Alternate Telegram client with material theme
 		mpv #.......................................... video and music player
 		obsidian #..................................... notes
 		obs-studio
-		#protonvpn-gui
-		#qucs-s #...................................... Analog and Digital circuit simulator
+		protonvpn-gui
+		qucs-s #....................................... Analog and Digital circuit simulator
 		slack
 		telegram-desktop
-		#tg #.......................................... terminal client for telegram
-		#(tic-80.override { withPro = true; } ) #...... Fantasy game console
-		#thunderbird #................................. email client
-		tofi #..................... Tiny dynamic menu for Wayland
-		#tor-browser-bundle-bin
-		#typstwriter #................................. Editor for the typst formatting language
-		#virtualbox #.................................. virtual machines
+		tg #........................................... terminal client for telegram
+		(tic-80.override { withPro = true; } ) #....... Fantasy game console
+		thunderbird #.................................. email client
+		tofi #......................................... Tiny dynamic menu for Wayland
+		tor-browser-bundle-bin
+		typstwriter #.................................. Editor for the typst formatting language
+		virtualbox #................................... virtual machines
 		vlc #.......................................... media player
-		#wezterm #..................................... terminal emulator
+		wezterm #...................................... terminal emulator
 		zathura #...................................... pdf/epub viewer
 	];
 
 	# ----- GAMING -----
 	# https://nixos.wiki/wiki/Steam
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-		"prismlauncher" #........... Minecraft Launcher
-		#protonup-qt #............ Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
-		#(retroarch.override {
-			#cores = with libretro; [
-				#melonds
-				#mgba
-			#];
-		#})
+		"prismlauncher" #.............................. Minecraft Launcher
+		protonup-qt #.................................. Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
+		(retroarch.override {
+			cores = with libretro; [
+				melonds
+				mgba
+			];
+		})
 		"steam"
 		"steam-original"
 		"steam-run"
