@@ -30,6 +30,7 @@ in {
 			systemd-boot.enable = true;
 			efi.canTouchEfiVariables = true;
 		};
+		kernelPackages = pkgs.linuxPackages_6_17;
 		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
