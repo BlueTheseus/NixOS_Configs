@@ -79,3 +79,11 @@ Now you're ready to install nixos:
 ```
 $ nixos-install --verbose
 ```
+
+Once the install is complete, don't forget to set up a password for your user
+with `passwd <USERNAME>`.
+
+## Post-Install
+Reboot into the install and set up tailscale with `doas tailscale login`. Copy
+over any ssh keys you need, and you'll be all ready to begin tinkering and
+modifying the system from anywhere you need.
