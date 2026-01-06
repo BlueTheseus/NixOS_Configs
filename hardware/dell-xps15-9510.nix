@@ -8,7 +8,24 @@
 	# - TPM
 
 	# ----- BATTERY -----
-	services.power-profiles-daemon.enable = false;
+	# - Powertop ........ calibrates to best battery life, but least convenient
+	# - TLP ............. most configurable
+	# - Auto-CPUfreq .... decent?
+	#
+	# Not all configurations work together. Choose between the following
+	# combinations:
+	#
+	# power-profiles daemon | powerManagement | Thermald | TLP | Auto-CPUfreq | Powertop
+	# ----------------------|-----------------|----------|-----|--------------|---------
+	#          x            |        x        |    x     |     |              |
+	# ----------------------|-----------------|----------|-----|--------------|---------
+	#          x            |        x        |    x     |  x  |              |
+	# ----------------------|-----------------|----------|-----|--------------|---------
+	#                       |        x        |    x     |     |      x       |
+	# ----------------------|-----------------|----------|-----|--------------|---------
+	#                       |                 |    x     |     |              |    x
+
+	services.power-profiles-daemon.enable = true;
 	powerManagement.enable = true;
 
 	# ~ Thermald ~
@@ -17,7 +34,7 @@
 	# ~ TLP ~
 	# Note: must disable services.power-profiles-daemon
 	services.tlp = {
-		enable = true;
+		enable = false;
 		settings = {
 			TLP_DEFAULT_MODE = "BAT";
 			# DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth wifi";
@@ -32,7 +49,7 @@
 	};
 
 	# ~ Auto-CPUfreq ~
-	# Note: do not enable alongside TLP--choose one.
+	# Note: do not enable alongside TLP or power-profiles-daemon--choose one.
 	services.auto-cpufreq = {
 		enable = false;
 		settings = {
@@ -56,6 +73,12 @@
 	# ----- GPU -----
 	# https://github.com/NixOS/nixos-hardware/tree/master/dell/xps/15-9510
 	# https://wiki.archlinux.org/title/PRIME
+
+	# Enable unfree repository for nvidia-x11, nvidia-settings, nvidia-persistenced
+	nixpkgs.config = {
+		allowUnfree = true;
+		nvidia.acceptLicense = true;
+	};
 
 	# D-Bus service to check the availability of dual-GPU
 	services.switcherooControl.enable = true;
