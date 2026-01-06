@@ -65,7 +65,6 @@
 		# ~ System ~
 		#auto-cpufreq #................................ auto cpu speed & power optimizer
 		btrfs-progs #.................................. BTRFS utilities
-		cgdisk
 		gcc #.......................................... GNU C Compiler
 		gdb #.......................................... GNU Debugger
 		git
@@ -73,6 +72,7 @@
 		gptfdisk #..................................... TUI disk management
 		pciutils #..................................... A collection of programs for inspecting and manipulating configuration of PCI devices
 		powertop #..................................... power monitoring and management
+		smartmontools #................................ Tools for monitoring the health of hard drives
 		tlp #.......................................... battery and power daemon
 		util-linux #................................... A set of system utilities for Linux
 		exfat #........................................ Free exFAT file system implementation
