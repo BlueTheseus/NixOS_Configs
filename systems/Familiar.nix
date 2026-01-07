@@ -166,15 +166,6 @@ in {
 		};
 	};
 
-	# ----- NIX USER REPOSITORY -----
-	# https://github.com/nix-community/NUR
-	nixpkgs.config.packageOverrides = pkgs: {
-		nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz")
-		{
-			inherit pkgs;
-		};
-	};
-
 	# ----- EXTRA FONTS -----
 	fonts.packages = with pkgs; [
 		google-fonts #...... Font files available from Google Fonts
@@ -193,32 +184,13 @@ in {
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
 		# ~ System ~
-		#auto-cpufreq #............ auto cpu speed & power optimizer
-		#busybox #................. Tiny versions of common UNIX utilities in a single small executable
-		#cgdisk
-		#clang #................... A C language family frontend for LLVM (wrapper script)
 		cpulimit #................. archived, use limitcpu -- however only this works to successfully limit children processes
-		#libclang #................ A C langauge family frontend for LLVM -- provides clang and clang++
-		#libgcc #.................. GNU Compiler Collection
-		#libuuid #................. A set of system utilities for Linux (util-linux-minimal)
-		#limitcpu
-		#toybox #.................. Lightweight implementation of some Unix command line utilities
 		usbutils #................. Tools for working with USB devices, such as lsusb
 
-		# ~ Documentation ~
-		man-pages #................ Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
-		man-pages-posix
-
-		# ~ Encryption ~
-		#gpg-tui #................. Terminal user interface for GnuPG
-
 		# ~ Info ~
-		#bunnyfetch
 		exiftool #................. file metadata
 		fastfetch
 		mediainfo
-		#starfetch
-		#uwufetch
 
 		# ~ Networking ~
 		bluez #.................... Official linux bluetooth protocol stack
@@ -231,51 +203,28 @@ in {
 
 		# ~ Utilities ~
 		bat #...................... pretty cat for the terminal
-		#borgbackup #.............. Deduplicating archiver with compression and encryption
 		cbonsai #.................. screensaver
-		#cope #.................... A colourful wrapper for terminal programs
 		ffmpeg
-		#findutils #............... GNU Find Utilities, the basic directory searching utilities of the GNU operating system -- provides: locate, updatedb
 		fzf
-		#glow #.................... cli markdown renderer
 		ifuse
-		#lazygit #................. TUI git
 		libimobiledevice #......... IOS device connection
 		libnotify #................ notify-send
 		libsixel #................. SIXEL library for console graphics, and converter programs
-		#mtm #..................... Perhaps the smallest useful terminal multiplexer in the world
 		p7zip #.................... zip utility
-		#pistol #.................. file previewer
-		#plocate #................. Much faster locate
-		#qemu #.................... Generic and open source machine emulator and virtualizer
 		rclone #................... Like rsync but for cloud storage services
-		#restic #.................. A backup program that is fast, efficient, and secure
 		rsync
 		trash-cli #................ trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #................ CLI utility for searching unicode characters by description and optionally copying them to clipboard
-		#ventoy #.................. live-usb
 		zbar #..................... Bar code reader (including QR code)
 
 		# ~ Languages ~
-		#julia #................... Julia programming language compiled
 		julia-bin #................ Julia programming language binary
-		#octave #.................. GNU Octave
 		octaveFull
 
 		# ~ Productivity ~
-		#abduco #.................. Allows programs to be run independently from its controlling terminal
-		#aerc #.................... Email client for your terminal
-		#dvtm #.................... Dynamic virtual terminal manager
 		lf #....................... file manager
-		#neomutt #................. Small but very powerful text-based mail client
-		#nnn #..................... minimal file manager
 		tmux #..................... widely-used terminal multiplexer
 		w3m #...................... Text-mode web browser
-		#xplr #.................... Hackable, minimal, fast TUI file explore
-		#zellij #.................. user-friendly terminal multiplexer
-
-		# ~ Nix Users Repository ~
-		#nur.repos.andreasrid.stm32cubeide #............ CubeIDE for STM32
 
 		# ~ Desktop ~
 		anki #..................... flashcards
@@ -286,40 +235,18 @@ in {
 		brave #.................... browser
 		discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
-		#flatpak
-		#floorp #.................. firefox-based browser
 		foot #..................... wayland terminal
-		#freecad
-		#freecad-wayland #......... General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler
-		#freecad-qt6
-		#gimp #.................... GNU Image Manipulation Program
-		#jellyfin-media-player
 		kdePackages.kcharselect #.. Tool to select and copy special characters from all installed fonts
-		#kdePackages.kdenlive #.... Free and open source video editor, based on MLT Framework and KDE Frameworks
 		#kicad #................... open source electronics design automation suite
 		libnotify #................ a library that sends desktop notifications to a notification daemon
-		#librecad #................ 2D CAD package based on Qt
 		libreoffice
-		#logisim-evolution #....... Digital logic designer and simulator
-		#materialgram #............ Alternate Telegram client with material theme
 		mpv #...................... video and music player
 		obsidian #................. notes
 		obs-studio
 		protontricks #.............
-		#protonvpn-gui
-		#qucs-s #.................. Analog and Digital circuit simulator
-		#slack
 		telegram-desktop
-		#tg #...................... terminal client for telegram
-		#thunderbird #............. email client
-		#(tic-80.override #........ Fantasy game console
-		#	{ withPro = true; }
-		#) 
 		tofi #..................... Tiny dynamic menu for Wayland
-		#tor-browser-bundle-bin
-		#virtualbox #.............. virtual machines
 		vlc #...................... media player
-		#wezterm #................. terminal emulator
 		zathura #.................. pdf/epub viewer
 	];
 
@@ -327,13 +254,6 @@ in {
 	# https://nixos.wiki/wiki/Steam
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 		"prismlauncher" #.......... Minecraft Launcher
-		#protonup-qt #............. Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
-		#(retroarch.override {
-			#cores = with libretro; [
-				#melonds
-				#mgba
-			#];
-		#})
 		"steam"
 		"steam-original"
 		"steam-run"
@@ -353,10 +273,6 @@ in {
 			enable = true;
 			enableExtensionPack = false; # Enabling this results in compiling from source, which is slow and resource-intensive
 		};
-		#guest = {
-			#enable = true;
-			#dragAndDrop = true;
-		#};
 	};
 	users.extraGroups.vboxusers.members = [ "${USER}" ];
 	boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; # temp fix: https://discourse.nixos.org/t/issue-with-virtualbox-in-24-11/57607
