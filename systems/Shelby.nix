@@ -13,14 +13,13 @@
 { config, pkgs, ... }:
 let
 	HOSTNAME = "Shelby";
-	HOSTID = ""; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
+	HOSTID = "a66e5646"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "Eden";
 	TIMEZONE = "America/Los_Angeles";
 in {
 	imports = [
-		#../hardware/pegatron_corp_2ad5.nix
 		../modules/Core.nix
-		#../modules/Desktops/kde-plasma.nix
+		../modules/Desktops/cosmic.nix
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix
@@ -38,12 +37,12 @@ in {
 		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
-	specialisation = {
-		CopyToRAM.configuration = {
-			system.nixos.tags = [ "Copy_To_RAM" ];
+	#specialisation = {
+		#CopyToRAM.configuration = {
+			#system.nixos.tags = [ "Copy_To_RAM" ];
 			boot.kernelParams = [ "copytoram" ];
-		};
-	};
+		#};
+	#};
 
 	# ----- LOCALISATION -----
 	time.timeZone = "${TIMEZONE}";
@@ -62,8 +61,8 @@ in {
 			openssh.authorizedKeys.keyFiles = [
 				/home/${USER}/.ssh/authorized_keys/horcrux.pub
 				/home/${USER}/.ssh/authorized_keys/workstation.pub
-				/home/${USER}/.ssh/authorized_keys/tome.pub
-				/home/${USER}/.ssh/authorized_keys/altar.pub
+			#	/home/${USER}/.ssh/authorized_keys/tome.pub
+			#	/home/${USER}/.ssh/authorized_keys/altar.pub
 			];
 		};
 	};
@@ -135,32 +134,13 @@ in {
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
 		# ~ System ~
-		#auto-cpufreq #................................ auto cpu speed & power optimizer
-		#busybox #..................................... Tiny versions of common UNIX utilities in a single small executable
-		#cgdisk
-		#clang #....................................... A C language family frontend for LLVM (wrapper script)
 		cpulimit #..................................... archived, use limitcpu -- however only this works to successfully limit children processes
-		#libclang #.................................... A C langauge family frontend for LLVM -- provides clang and clang++
-		#libgcc #...................................... GNU Compiler Collection
-		#libuuid #..................................... A set of system utilities for Linux (util-linux-minimal)
-		#limitcpu
-		#toybox #...................................... Lightweight implementation of some Unix command line utilities
 		usbutils #..................................... Tools for working with USB devices, such as lsusb
 
-		# ~ Documentation ~
-		man-pages #.................................... Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
-		man-pages-posix
-
-		# ~ Encryption ~
-		#gpg-tui #..................................... Terminal user interface for GnuPG
-
 		# ~ Info ~
-		#bunnyfetch
 		#exiftool #.................................... file metadata
 		fastfetch
 		#mediainfo
-		#starfetch
-		#uwufetch
 
 		# ~ Networking ~
 		#bluez #....................................... Official linux bluetooth protocol stack
@@ -177,24 +157,21 @@ in {
 		#borgbackup #.................................. Deduplicating archiver with compression and encryption
 		#cbonsai #..................................... screensaver
 		ffmpeg
-		fzf
 		#glow #........................................ cli markdown renderer
 		#ifuse
 		#libimobiledevice #............................ IOS device connection
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
 		#lz4 #......................................... Extremely fast compression algorithm
+		nemu #......................................... Ncurses UI for QEMU
 		#outils #...................................... Port of OpenBSD-exclusive tools -- included for md5
-		p7zip #........................................ zip utility
-		#qemu #........................................ Generic and open source machine emulator and virtualizer
+		qemu #......................................... Generic and open source machine emulator and virtualizer
 		rclone #....................................... Like rsync but for cloud storage services
 		#restic #...................................... A backup program that is fast, efficient, and secure
 		rsync
-		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		#unipicker #................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		#zstd #........................................ Zstandard real-time compression algorithm
 
 		# ~ Productivity ~
-		#abduco #...................................... Allows programs to be run independently from its controlling terminal
 		lf #........................................... file manager
 		nnn #.......................................... minimal file manager
 		tmux #......................................... widely-used terminal multiplexer
@@ -212,7 +189,6 @@ in {
 		mpv #.......................................... video and music player
 		obsidian #..................................... notes
 		obs-studio
-		#tor-browser-bundle-bin
 		#virtualbox #.................................. virtual machines
 		vlc #.......................................... media player
 		zathura #...................................... pdf/epub viewer
