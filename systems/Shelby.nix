@@ -105,6 +105,10 @@ in {
 		enable = false;
 		#package = pkgs.usbmuxd2;
 	};
+	systemd.tmpfiles.rules = [
+		# "d /folder/to/create <chmod-value> <user> <group>"
+		"d /srv/qemu 775 root users"
+	];
 
 	# ----- DOCUMENTATION -----
 	documentation = {
