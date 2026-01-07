@@ -157,22 +157,10 @@ in {
 		};
 	};
 
-	# ----- FONTS -----
+	# ----- EXTRA FONTS -----
 	fonts.packages = with pkgs; [
-		cozette #........... A bitmap programming font optimized for coziness
-		dina-font #......... A monospace bitmap font aimed at programmers
-		#google-fonts #...... Font files available from Google Fonts
-		#noto-fonts #........ Beautiful and free fonts for many languages
-		scientifica #....... Tall and condensed bitmap font for geeks
-		siji #.............. An iconic bitmap font based on Stlarch with additional glyphs
-		spleen #............ Monospaced bitmap fonts
-		tamsyn #............ A monospace bitmap font aimed at programmers
-		tamzen #............ Bitmapped programming font based on Tamsyn
-		tewi-font #......... A nice bitmap font, readable even at small sizes
-		ucs-fonts #......... Unicode bitmap fonts
-		unifont #........... GNU's Unicode font for Base Multilingual Plane
-		unscii #............ Bitmapped character-art-friendly Unicode fonts
-
+		google-fonts #...... Font files available from Google Fonts
+		noto-fonts #........ Beautiful and free fonts for many languages
 		nerd-fonts._0xproto
 		nerd-fonts.adwaita-mono
 		nerd-fonts.blex-mono

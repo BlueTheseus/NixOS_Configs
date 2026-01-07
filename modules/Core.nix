@@ -53,6 +53,21 @@
 		#tailscale.package = pkgs.tailscale.overrideAttrs { doCheck = false; }; # Temporary fix to allow upgrading from a broken kernel (pre-6.12.46) to a fixed kernel (6.12.46 and above). Must also comment out tailscale in system packages.
 	};
 
+	# ----- FONTS -----
+	fonts.packages = with pkgs; [
+		cozette #........... A bitmap programming font optimized for coziness
+		dina-font #......... A monospace bitmap font aimed at programmers
+		scientifica #....... Tall and condensed bitmap font for geeks
+		siji #.............. An iconic bitmap font based on Stlarch with additional glyphs
+		spleen #............ Monospaced bitmap fonts
+		tamsyn #............ A monospace bitmap font aimed at programmers
+		tamzen #............ Bitmapped programming font based on Tamsyn
+		tewi-font #......... A nice bitmap font, readable even at small sizes
+		ucs-fonts #......... Unicode bitmap fonts
+		unifont #........... GNU's Unicode font for Base Multilingual Plane
+		unscii #............ Bitmapped character-art-friendly Unicode fonts
+	];
+
 	# ----- PACKAGES -----
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [

@@ -119,20 +119,8 @@ in {
 
 	# ----- FONTS -----
 	fonts.packages = with pkgs; [
-		cozette #........... A bitmap programming font optimized for coziness
-		dina-font #......... A monospace bitmap font aimed at programmers
 		#google-fonts #...... Font files available from Google Fonts
 		#noto-fonts #........ Beautiful and free fonts for many languages
-		scientifica #....... Tall and condensed bitmap font for geeks
-		siji #.............. An iconic bitmap font based on Stlarch with additional glyphs
-		spleen #............ Monospaced bitmap fonts
-		tamsyn #............ A monospace bitmap font aimed at programmers
-		tamzen #............ Bitmapped programming font based on Tamsyn
-		tewi-font #......... A nice bitmap font, readable even at small sizes
-		ucs-fonts #......... Unicode bitmap fonts
-		unifont #........... GNU's Unicode font for Base Multilingual Plane
-		unscii #............ Bitmapped character-art-friendly Unicode fonts
-
 		#nerd-fonts._0xproto
 		#nerd-fonts.adwaita-mono
 		#nerd-fonts.blex-mono
@@ -233,7 +221,8 @@ in {
 	# ----- SAMBA -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/samba/Media 755 root users"
+		"d /srv/samba/Media  755 root users"
+		"d /srv/samba/School 755 root users"
 	];
 
 	services.samba.settings = {
@@ -242,6 +231,13 @@ in {
 			browseable = "yes";
 			public = "no";
 			"read only" = "yes";
+			"guest ok" = "yes";
+		};
+		"School" = {
+			path = "/srv/samba/School";
+			browseable = "yes";
+			public = "no";
+			"read only" = "no";
 			"guest ok" = "no";
 			"valid users" = "${USER}";
 		};
