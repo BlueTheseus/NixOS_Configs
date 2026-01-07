@@ -157,6 +157,15 @@ in {
 		};
 	};
 
+	# ----- NIX USER REPOSITORY -----
+	# https://github.com/nix-community/NUR
+	nixpkgs.config.packageOverrides = pkgs: {
+		nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz")
+		{
+			inherit pkgs;
+		};
+	};
+
 	# ----- EXTRA FONTS -----
 	fonts.packages = with pkgs; [
 		google-fonts #...... Font files available from Google Fonts
@@ -185,10 +194,6 @@ in {
 		limitcpu
 		toybox #....................................... Lightweight implementation of some Unix command line utilities
 		usbutils #..................................... Tools for working with USB devices, such as lsusb
-
-		# ~ Documentation ~
-		man-pages #.................................... Linux Man-Pages Project -- a set of documentation of the Linux programming API -- check section 3
-		man-pages-posix
 
 		# ~ Encryption ~
 		gpg-tui #...................................... Terminal user interface for GnuPG
@@ -227,6 +232,7 @@ in {
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
 		lz4 #.......................................... Extremely fast compression algorithm
 		mtm #.......................................... Perhaps the smallest useful terminal multiplexer in the world
+		nemu #......................................... Ncurses UI for QEMU
 		outils #....................................... Port of OpenBSD-exclusive tools -- included for md5
 		p7zip #........................................ zip utility
 		pistol #....................................... file previewer
@@ -310,12 +316,16 @@ in {
 		vlc #.......................................... media player
 		wezterm #...................................... terminal emulator
 		zathura #...................................... pdf/epub viewer
+
+		# ~ Nix Users Repository ~
+		#nur.repos.andreasrid.stm32cubeide #............ CubeIDE for STM32
 	];
 
 	# ----- GAMING -----
 	# https://nixos.wiki/wiki/Steam
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 		"prismlauncher" #.............................. Minecraft Launcher
+		protontricks
 		protonup-qt #.................................. Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface
 		(retroarch.override {
 			cores = with libretro; [
@@ -331,6 +341,9 @@ in {
 		enable = true;
 		remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
 		dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+		extraCompatPackages = with pkgs; [
+			proton-ge-bin
+		];
 	};
 
 	# ----- VIRTUALBOX -----
