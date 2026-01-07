@@ -105,10 +105,6 @@ in {
 		enable = false;
 		#package = pkgs.usbmuxd2;
 	};
-	systemd.tmpfiles.rules = [
-		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/qemu 775 root users"
-	];
 
 	# ----- DOCUMENTATION -----
 	documentation = {
@@ -198,9 +194,10 @@ in {
 		zathura #...................................... pdf/epub viewer
 	];
 
-	# ----- SAMBA -----
+	# ----- SERVICES -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
+		"d /srv/qemu         755 root users"
 		"d /srv/samba/Media  755 root users"
 		"d /srv/samba/School 755 root users"
 	];
