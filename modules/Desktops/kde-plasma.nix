@@ -38,7 +38,6 @@
 		kdePackages.krohnkite
 		nur.repos.shadowrz.klassy-qt6
 		qpwgraph #........................... QT-based pipewire manager
-		typstwriter #........................ Editor for the typst formatting language
 	];
 	
 	# ~ Exclude Packages ~
