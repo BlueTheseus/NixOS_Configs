@@ -206,6 +206,7 @@ in {
 		cbonsai #.................. screensaver
 		ffmpeg
 		fzf
+		glow #......................................... cli markdown renderer
 		ifuse
 		libimobiledevice #......... IOS device connection
 		libnotify #................ notify-send
@@ -237,7 +238,7 @@ in {
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
 		kdePackages.kcharselect #.. Tool to select and copy special characters from all installed fonts
-		#kicad #................... open source electronics design automation suite
+		kicad #.................... open source electronics design automation suite
 		libnotify #................ a library that sends desktop notifications to a notification daemon
 		libreoffice
 		mpv #...................... video and music player
@@ -246,6 +247,7 @@ in {
 		protontricks #.............
 		telegram-desktop
 		tofi #..................... Tiny dynamic menu for Wayland
+		typstwriter #.............. Editor for the typst formatting language
 		vlc #...................... media player
 		zathura #.................. pdf/epub viewer
 	];
