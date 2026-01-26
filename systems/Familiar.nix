@@ -30,7 +30,7 @@ in {
 			systemd-boot.enable = true;
 			efi.canTouchEfiVariables = true;
 		};
-		kernelPackages = pkgs.linuxPackages_6_17;
+		#kernelPackages = pkgs.linuxPackages_6_17;
 		supportedFilesystems = [ "zfs" ]; # Optionally add ntfs
 		zfs.forceImportRoot = false;
 	};
@@ -221,6 +221,11 @@ in {
 		# ~ Languages ~
 		julia-bin #................ Julia programming language binary
 		octaveFull
+		python313 #.................................... Python 3.13
+		python313Packages.numpy
+		#python313Packages.matplotlib
+		#texliveFull
+		typst
 
 		# ~ Productivity ~
 		lf #....................... file manager
