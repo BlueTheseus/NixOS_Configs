@@ -253,10 +253,12 @@ in {
 		julia-bin #.................................... Julia programming language binary
 		octave #....................................... GNU Octave
 		octaveFull
-		python313 #.................................... Python 3.14
+		python313 #.................................... Python 3.13
 		python313Packages.numpy
 		python313Packages.matplotlib
 		python313Packages.scipy
+		texliveFull
+		typst
 
 		# ~ Productivity ~
 		abduco #....................................... Allows programs to be run independently from its controlling terminal
