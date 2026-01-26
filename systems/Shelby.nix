@@ -197,9 +197,10 @@ in {
 	# ----- SERVICES -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/qemu         755 root users"
-		"d /srv/samba/Media  755 root users"
-		"d /srv/samba/School 755 root users"
+		"d /srv/qemu          755 root users"
+		"d /srv/samba/Media   755 root users"
+		"d /srv/samba/School  755 root users"
+		"d /srv/samba/Library 755 root users"
 	];
 
 	services.samba.settings = {
@@ -212,6 +213,14 @@ in {
 		};
 		"School" = {
 			path = "/srv/samba/School";
+			browseable = "yes";
+			public = "no";
+			"read only" = "no";
+			"guest ok" = "no";
+			"valid users" = "${USER}";
+		};
+		"Library" = {
+			path = "/srv/samba/Library";
 			browseable = "yes";
 			public = "no";
 			"read only" = "no";
