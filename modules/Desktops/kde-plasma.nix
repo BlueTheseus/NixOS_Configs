@@ -22,11 +22,11 @@
 	};
 	
 	# ----- PACKAGES -----
-	nixpkgs.config.packageOverrides = pkgs: { # Enable the Nix Users Repository
-		nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
-			inherit pkgs;
-		};
-	};
+	#nixpkgs.config.packageOverrides = pkgs: { # Enable the Nix Users Repository
+		#nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
+			#inherit pkgs;
+		#};
+	#};
 
 	# ~ Extra Packages ~
 	environment.systemPackages = with pkgs; [
@@ -36,7 +36,7 @@
 		kdePackages.bluedevil #.............. adds bluetooth capabilities to KDE Plasma
 		kdePackages.bluez-qt #............... Qt wrapper for Bluez 5 DBus API -- for bluetooth control in kde settings
 		kdePackages.krohnkite
-		nur.repos.shadowrz.klassy-qt6
+		#nur.repos.shadowrz.klassy-qt6 #..... no longer available
 		qpwgraph #........................... QT-based pipewire manager
 	];
 	
