@@ -212,6 +212,7 @@ in {
 		curl
 		dnsutils
 		mosh #......................................... Mobile shell (ssh replacement)
+		syncthing
 		wget
 		yt-dlp
 
