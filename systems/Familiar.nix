@@ -92,7 +92,7 @@ in {
 	# ----- USERS -----
 	users.users."${USER}" = {
 		isNormalUser = true;
-		extraGroups = [ "networkmanager" "wheel" "video" ];
+		extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
 	};
 	
 	# ----- SYSTEM -----
@@ -292,4 +292,13 @@ in {
 	};
 	users.extraGroups.vboxusers.members = [ "${USER}" ];
 	boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; # temp fix: https://discourse.nixos.org/t/issue-with-virtualbox-in-24-11/57607
+
+	# ----- DOCKER -----
+	virtualisation.docker = {
+		enable = true;
+		rootless = {
+			enable = true;
+			setSocketVariable = true;
+		};
+	};
 }
