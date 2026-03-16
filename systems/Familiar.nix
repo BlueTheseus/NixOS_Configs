@@ -16,6 +16,7 @@ let
 	HOSTID = "88452ff9"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
 	USER = "Xenia";
 	TIMEZONE = "America/Los_Angeles";
+	unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in {
 	imports = [
 		../hardware/dell-xps15-9510.nix
@@ -181,7 +182,14 @@ in {
 	];
 
 	# ----- EXTRA SYSTEM PACKAGES -----
-	nixpkgs.config.allowUnfree = true;
+	nixpkgs.config = {
+		allowUnfree = true;
+		packageOverrides = pkgs: {
+			unstable = import unstableTarball {
+				config = config.nixpkgs.config;
+			};
+		};
+	};
 	environment.systemPackages = with pkgs; [
 		# ~ System ~
 		cpulimit #................. archived, use limitcpu -- however only this works to successfully limit children processes
@@ -198,6 +206,7 @@ in {
 		curl
 		dnsutils
 		mosh #..................... Mobile shell (ssh replacement)
+		#openssl
 		wget
 		yt-dlp
 
@@ -238,7 +247,7 @@ in {
 		#aseprite #................ pixelart and animation editor
 		#audacity #................ Sound editor with graphical UI
 		#blender #................. 3d modeling
-		brave #.................... browser
+		unstable.brave #.................... browser
 		discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
@@ -250,7 +259,7 @@ in {
 		obsidian #................. notes
 		obs-studio
 		protontricks #.............
-		telegram-desktop
+		unstable.telegram-desktop
 		tofi #..................... Tiny dynamic menu for Wayland
 		typstwriter #.............. Editor for the typst formatting language
 		vlc #...................... media player
