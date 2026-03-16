@@ -272,7 +272,7 @@ in {
 		script = ''#!${pkgs.runtimeShell} syncthing'';
 		serviceConfig = {
 			Type = "oneshot";
-			User = "${USER}"
+			User = "${USER}";
 		};
 	};
 
