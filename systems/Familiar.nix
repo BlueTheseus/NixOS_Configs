@@ -207,6 +207,7 @@ in {
 		dnsutils
 		mosh #..................... Mobile shell (ssh replacement)
 		#openssl
+		syncthing
 		wget
 		yt-dlp
 
