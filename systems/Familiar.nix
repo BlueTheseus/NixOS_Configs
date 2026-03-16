@@ -267,6 +267,16 @@ in {
 		zathura #.................. pdf/epub viewer
 	];
 
+	# ----- SYNCTHING -----
+	systemd.services."syncthingd" = {
+		script = ''#!${pkgs.runtimeShell} syncthing'';
+		serviceConfig = {
+			Type = "oneshot";
+			User = "${USER}"
+		};
+	};
+
+
 	# ----- GAMING -----
 	# https://nixos.wiki/wiki/Steam
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
