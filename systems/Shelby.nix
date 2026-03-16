@@ -19,7 +19,7 @@ let
 in {
 	imports = [
 		../modules/Core.nix
-		../modules/Desktops/cosmic.nix
+		#../modules/Desktops/cosmic.nix
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix
@@ -149,6 +149,7 @@ in {
 		#dnsutils
 		#mosh #........................................ Mobile shell (ssh replacement)
 		#wget
+		syncthing
 		yt-dlp
 
 		# ~ Utilities ~
@@ -179,19 +180,19 @@ in {
 
 		# ~ Desktop ~
 		#bluez #....................................... official linux bluetooth protocol stack
-		brave #........................................ browser
-		discord
+		#brave #........................................ browser
+		#discord
 		#firefox #..................................... browser
-		foot #......................................... wayland terminal
-		kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
-		libnotify #.................................... a library that sends desktop notifications to a notification daemon
-		libreoffice
-		mpv #.......................................... video and music player
-		obsidian #..................................... notes
-		obs-studio
+		#foot #......................................... wayland terminal
+		#kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
+		#libnotify #.................................... a library that sends desktop notifications to a notification daemon
+		#libreoffice
+		#mpv #.......................................... video and music player
+		#obsidian #..................................... notes
+		#obs-studio
 		#virtualbox #.................................. virtual machines
-		vlc #.......................................... media player
-		zathura #...................................... pdf/epub viewer
+		#vlc #.......................................... media player
+		#zathura #...................................... pdf/epub viewer
 	];
 
 	# ----- SERVICES -----
