@@ -115,5 +115,7 @@
 		fzf
 		p7zip #........................................ zip utility
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
+		unzip
+		zip
 	];
 }
