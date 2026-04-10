@@ -248,6 +248,7 @@ in {
 		#aseprite #................ pixelart and animation editor
 		#audacity #................ Sound editor with graphical UI
 		#blender #................. 3d modeling
+		calibre #...................................... Comprehensive e-book software
 		unstable.brave #.................... browser
 		discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
