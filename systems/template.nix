@@ -232,6 +232,7 @@ in {
 		libnotify #.................................... notify-send
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
 		lz4 #.......................................... Extremely fast compression algorithm
+		mat2 #......................................... Handy tool to trash your metadata
 		mtm #.......................................... Perhaps the smallest useful terminal multiplexer in the world
 		nemu #......................................... Ncurses UI for QEMU
 		outils #....................................... Port of OpenBSD-exclusive tools -- included for md5
@@ -243,6 +244,7 @@ in {
 		restic #....................................... A backup program that is fast, efficient, and secure
 		rmlint
 		rsync
+		tesseract #.................................... OCR engine
 		trash-cli #.................................... trash can for the commandline. Don't accidentally rm something important ;)
 		unipicker #.................................... CLI utility for searching unicode characters by description and optionally copying them to clipboard
 		ventoy #....................................... live-usb
@@ -284,6 +286,8 @@ in {
 		blender #...................................... 3d modeling
 		bluez #........................................ official linux bluetooth protocol stack
 		brave #........................................ browser
+		calibre #...................................... Comprehensive e-book software
+		calibre-web #.................................. Web app for browsing, reading and downloading eBooks stored in a Calibre database
 		discord
 		firefox #...................................... browser -- backup for when brave won't properly render websites
 		flatpak
@@ -301,6 +305,7 @@ in {
 		librecad #..................................... 2D CAD package based on Qt
 		libreoffice
 		logisim-evolution #............................ Digital logic designer and simulator
+		ltspice #...................................... SPICE simulator, schematic capture and waveform viewer
 		materialgram #................................. Alternate Telegram client with material theme
 		mpv #.......................................... video and music player
 		obsidian #..................................... notes
@@ -318,6 +323,7 @@ in {
 		virtualbox #................................... virtual machines
 		vlc #.......................................... media player
 		wezterm #...................................... terminal emulator
+		xournalpp #.................................... Xournal++ is a handwriting Notetaking software with PDF annotation support
 		zathura #...................................... pdf/epub viewer
 
 		# ~ Nix Users Repository ~
