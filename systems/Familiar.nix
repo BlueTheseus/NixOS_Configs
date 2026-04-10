@@ -230,7 +230,7 @@ in {
 
 		# ~ Languages ~
 		julia-bin #................ Julia programming language binary
-		octaveFull
+		#octaveFull
 		python313 #.................................... Python 3.13
 		python313Packages.numpy
 		#python313Packages.matplotlib
@@ -240,10 +240,10 @@ in {
 		# ~ Productivity ~
 		lf #....................... file manager
 		tmux #..................... widely-used terminal multiplexer
-		w3m #...................... Text-mode web browser
+		#w3m #...................... Text-mode web browser
 
 		# ~ Desktop ~
-		anki #..................... flashcards
+		#anki #..................... flashcards
 		#arduino #................. arduino IDE
 		#aseprite #................ pixelart and animation editor
 		#audacity #................ Sound editor with graphical UI
@@ -253,13 +253,14 @@ in {
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
 		kdePackages.kcharselect #.. Tool to select and copy special characters from all installed fonts
-		kicad #.................... open source electronics design automation suite
+		#kicad #.................... open source electronics design automation suite
 		libnotify #................ a library that sends desktop notifications to a notification daemon
 		libreoffice
+		#ltspice
 		mpv #...................... video and music player
 		obsidian #................. notes
 		obs-studio
-		protontricks #.............
+		#protontricks #.............
 		unstable.telegram-desktop
 		tofi #..................... Tiny dynamic menu for Wayland
 		typstwriter #.............. Editor for the typst formatting language
