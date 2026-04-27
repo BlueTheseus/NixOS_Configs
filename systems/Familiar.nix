@@ -119,6 +119,8 @@ in {
 		settings = {
 			experimental-features = [ "nix-command" "flakes" ];
 			allowed-users = [ "@wheel" ];
+			max-jobs = 4; # Tuned for background updates while running on battery.
+			cores = 2;    # These can be changed with appropriate option flags.
 		};
 		gc = {
 			automatic = false;
