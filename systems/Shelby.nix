@@ -10,7 +10,7 @@
 # 	- Separate root and home partitions
 # Swap:
 # 	- Recommended size: (amount of RAM) + sqrt(amount of RAM)
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
 	HOSTNAME = "Shelby";
 	HOSTID = "a66e5646"; # needed for zfs. generate with: head -c4 /dev/urandom | od -A none -t x4
@@ -19,11 +19,16 @@ let
 in {
 	imports = [
 		../modules/Core.nix
-		#../modules/Desktops/cosmic.nix
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix
-		#../modules/nextcloud.nix
+		../modules/calibre-web.nix
+		../modules/Desktops/gnome.nix
+
+		./Shelby.d/nextcloud.nix
+		./Shelby.d/nut.nix
+		./Shelby.d/services.nix
+		./Shelby.d/desktop.nix
 	];
 
 	# ----- BOOT -----
@@ -52,7 +57,8 @@ in {
 		hostName = "${HOSTNAME}";
 		hostId = "${HOSTID}"; # for zfs. generated with: head -c4 /dev/urandom | od -A none -t x4
 		firewall = {
-			allowedTCPPorts = [ 8920 ];
+			allowedTCPPorts = [ 80 81 443 3493 8920 ];
+			allowedUDPPorts = [ 80 81 443 3493 ];
 		};
 	};
 
@@ -60,13 +66,7 @@ in {
 	users.users = {
 		"${USER}" = {
 			isNormalUser = true;
-			extraGroups = [ "networkmanager" "wheel" ];
-			openssh.authorizedKeys.keyFiles = [
-				/home/${USER}/.ssh/authorized_keys/horcrux.pub
-				/home/${USER}/.ssh/authorized_keys/workstation.pub
-			#	/home/${USER}/.ssh/authorized_keys/tome.pub
-			#	/home/${USER}/.ssh/authorized_keys/altar.pub
-			];
+			extraGroups = [ "networkmanager" "wheel" "docker" ];
 		};
 	};
 	
@@ -104,10 +104,6 @@ in {
 			min-free = ${toString (512 * 1024 * 1024)}
 		'';
 	};
-	services.usbmuxd = { # IOS device connectivity
-		enable = false;
-		#package = pkgs.usbmuxd2;
-	};
 
 	# ----- DOCUMENTATION -----
 	documentation = {
@@ -119,25 +115,12 @@ in {
 		};
 	};
 
-	# ----- FONTS -----
-	fonts.packages = with pkgs; [
-		#google-fonts #...... Font files available from Google Fonts
-		#noto-fonts #........ Beautiful and free fonts for many languages
-		#nerd-fonts._0xproto
-		#nerd-fonts.adwaita-mono
-		#nerd-fonts.blex-mono
-		#nerd-fonts.comic-shanns-mono
-		#nerd-fonts.im-writing
-		#nerd-fonts.intone-mono
-		#nerd-fonts.iosevka
-		#nerd-fonts.iosevka-term
-	];
-
 	# ----- EXTRA SYSTEM PACKAGES -----
 	nixpkgs.config.allowUnfree = true;
 	environment.systemPackages = with pkgs; [
 		# ~ System ~
 		cpulimit #..................................... archived, use limitcpu -- however only this works to successfully limit children processes
+		nut #.......................................... Network UPS Tools
 		usbutils #..................................... Tools for working with USB devices, such as lsusb
 
 		# ~ Info ~
@@ -154,6 +137,7 @@ in {
 		#wget
 		syncthing
 		yt-dlp
+		#tigervnc
 
 		# ~ Utilities ~
 		#bat #......................................... pretty cat for the terminal
@@ -161,7 +145,7 @@ in {
 		#borgbackup #.................................. Deduplicating archiver with compression and encryption
 		#cbonsai #..................................... screensaver
 		ffmpeg
-		#glow #........................................ cli markdown renderer
+		glow #......................................... cli markdown renderer
 		#ifuse
 		#libimobiledevice #............................ IOS device connection
 		libsixel #..................................... SIXEL library for console graphics, and converter programs
@@ -180,56 +164,5 @@ in {
 		nnn #.......................................... minimal file manager
 		tmux #......................................... widely-used terminal multiplexer
 		#w3m #......................................... Text-mode web browser
-
-		# ~ Desktop ~
-		#bluez #....................................... official linux bluetooth protocol stack
-		#brave #........................................ browser
-		#discord
-		#firefox #..................................... browser
-		#foot #......................................... wayland terminal
-		#kdePackages.kcharselect #...................... Tool to select and copy special characters from all installed fonts
-		#libnotify #.................................... a library that sends desktop notifications to a notification daemon
-		#libreoffice
-		#mpv #.......................................... video and music player
-		#obsidian #..................................... notes
-		#obs-studio
-		#virtualbox #.................................. virtual machines
-		#vlc #.......................................... media player
-		#zathura #...................................... pdf/epub viewer
 	];
-
-	# ----- SERVICES -----
-	systemd.tmpfiles.rules = [
-		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/qemu          755 root users"
-		"d /srv/samba/Media   755 root users"
-		"d /srv/samba/School  755 root users"
-		"d /srv/samba/Library 755 root users"
-	];
-
-	services.samba.settings = {
-		"Media" = {
-			path = "/srv/samba/Media";
-			browseable = "yes";
-			public = "no";
-			"read only" = "yes";
-			"guest ok" = "yes";
-		};
-		"School" = {
-			path = "/srv/samba/School";
-			browseable = "yes";
-			public = "no";
-			"read only" = "no";
-			"guest ok" = "no";
-			"valid users" = "${USER}";
-		};
-		"Library" = {
-			path = "/srv/samba/Library";
-			browseable = "yes";
-			public = "no";
-			"read only" = "no";
-			"guest ok" = "no";
-			"valid users" = "${USER}";
-		};
-	};
 }
