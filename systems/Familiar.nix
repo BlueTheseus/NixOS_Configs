@@ -207,7 +207,7 @@ in {
 		cifs-utils #............... Samba
 		curl
 		dnsutils
-		mosh #..................... Mobile shell (ssh replacement)
+		#mosh #..................... Mobile shell (ssh replacement)
 		#openssl
 		syncthing
 		wget
@@ -231,12 +231,16 @@ in {
 		zbar #..................... Bar code reader (including QR code)
 
 		# ~ Languages ~
-		julia-bin #................ Julia programming language binary
+		#julia-bin #................ Julia programming language binary
 		#octaveFull
 		python313 #.................................... Python 3.13
 		python313Packages.numpy
 		#python313Packages.matplotlib
 		#texliveFull
+		#texliveMedium
+		texliveBasic
+		#texliveSmall
+		#texliveMinimal
 		typst
 
 		# ~ Productivity ~
@@ -260,11 +264,14 @@ in {
 		libnotify #................ a library that sends desktop notifications to a notification daemon
 		libreoffice
 		#ltspice
+		#kdePackages.merkuro #..... Merkuro is an application suite designed to make handling your emails, calendar, contacts, and tasks simple.
 		mpv #...................... video and music player
 		obsidian #................. notes
 		obs-studio
+		prismlauncher #............ Minecraft Launcher
 		#protontricks #.............
 		unstable.telegram-desktop
+		#texstudio #............... TeX and LaTeX editor
 		tofi #..................... Tiny dynamic menu for Wayland
 		typstwriter #.............. Editor for the typst formatting language
 		vlc #...................... media player
