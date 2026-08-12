@@ -22,13 +22,13 @@ in {
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix
-		../modules/calibre-web.nix
 		../modules/Desktops/gnome.nix
 
 		./Shelby.d/nextcloud.nix
 		./Shelby.d/nut.nix
 		./Shelby.d/services.nix
 		./Shelby.d/desktop.nix
+		./Shelby.d/calibre-web.nix
 	];
 
 	# ----- BOOT -----
