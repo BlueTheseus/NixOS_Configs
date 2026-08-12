@@ -62,7 +62,7 @@
 		spleen #............ Monospaced bitmap fonts
 		tamsyn #............ A monospace bitmap font aimed at programmers
 		tamzen #............ Bitmapped programming font based on Tamsyn
-		tewi-font #......... A nice bitmap font, readable even at small sizes
+		#UNAVAILABLE: tewi-font #......... A nice bitmap font, readable even at small sizes
 		ucs-fonts #......... Unicode bitmap fonts
 		unifont #........... GNU's Unicode font for Base Multilingual Plane
 		unscii #............ Bitmapped character-art-friendly Unicode fonts
