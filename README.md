@@ -22,5 +22,5 @@ Note that the hardware configurations are kept separate from the system
 configurations so that any system can be easily paired with any hardware.
 
 # Getting Started
-You can read `Getting_Started.md` for a small guide to quickly get a system up
+You can read `GETTING_STARTED.md` for a small guide to quickly get a system up
 and running. Be sure to consult the official NixOS wiki too though.
