@@ -45,7 +45,7 @@ in {
 	# ----- NETWORKING -----
 	networking = {
 		hostName = "${HOSTNAME}";
-		#hostId = "${HOSTID}"; # for zfs -- generated with: head -c4 /dev/urandom | od -A none -t x4
+		hostId = "${HOSTID}"; # for zfs -- generated with: head -c4 /dev/urandom | od -A none -t x4
 		wireless.enable = false; # Enables networking support via wpa_supplicant
 		#interfaces.eth0.ipv4.addresses = [{
 			#address = "10.0.0.5";
@@ -88,9 +88,9 @@ in {
 			isNormalUser = true;
 			extraGroups = [ "networkmanager" "wheel" "video" ];
 			initialPassword = "changeme";
-			#openssh.authorizedKeys.keyFiles = [
-				#../extras/key.pub
-			#];
+			openssh.authorizedKeys.keyFiles = [
+				./nomad.pub
+			];
 		};
 	};
 
@@ -123,7 +123,7 @@ in {
 		man = {
 			#man-db.enable = false; # Use mandoc instead of man-db
 			#mandoc.enable = true;
-			generateCaches = true;
+			cache.enable = true;
 		};
 	};
 
