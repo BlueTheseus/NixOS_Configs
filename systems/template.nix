@@ -153,7 +153,7 @@ in {
 		man = {
 			#man-db.enable = false; # Use mandoc instead of man-db
 			#mandoc.enable = true;
-			generateCaches = true;
+			cache.enable = true;
 		};
 	};
 
