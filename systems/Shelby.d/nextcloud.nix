@@ -79,7 +79,7 @@
 
 	# ----- HTTPS -----
 	services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-		forceSSl = false; #...... true for https
+		forceSSL = false; #...... true for https
 		enableACME = false; #.... true for https
 		listen = [
 			{ addr = "0.0.0.0"; port = 42020; }
