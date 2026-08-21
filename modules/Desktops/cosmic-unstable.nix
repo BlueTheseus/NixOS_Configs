@@ -13,6 +13,7 @@ in
 		"services/display-managers/cosmic-greeter.nix"
 		"services/desktop-managers/cosmic.nix"
 		"services/desktops/system76-scheduler.nix"
+		"security/polkit.nix"
 	];
 
 	# Import from unstable
@@ -20,6 +21,7 @@ in
 		(unstableTarball + "/nixos/modules/services/display-managers/cosmic-greeter.nix")
 		(unstableTarball + "/nixos/modules/services/desktop-managers/cosmic.nix")
 		(unstableTarball + "/nixos/modules/services/desktops/system76-scheduler.nix")
+		(unstableTarball + "/nixos/modules/security/polkit.nix")
 	];
 
 	# Use packages from unstable
