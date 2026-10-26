@@ -78,7 +78,6 @@
 		neovim
 
 		# ~ System ~
-		#auto-cpufreq #................................ auto cpu speed & power optimizer
 		btrfs-progs #.................................. BTRFS utilities
 		gcc #.......................................... GNU C Compiler
 		gdb #.......................................... GNU Debugger
@@ -98,6 +97,7 @@
 		man-pages-posix
 
 		# ~ Encryption ~
+		cryptomator-cli #.............................. Command line program to access encrypted Cryptomator vaults
 		cryptsetup
 		gnupg
 		keepassxc #.................................... Provides keepassxc-cli

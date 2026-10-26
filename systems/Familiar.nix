@@ -220,8 +220,10 @@ in {
 		#audacity #................ Sound editor with graphical UI
 		#blender #................. 3d modeling
 		calibre #...................................... Comprehensive e-book software
+		chirp #.................... Free, open-source tool for programming your amateur radio
+		cryptomator #.............. Free client-side encryption for your cloud files
 		unstable.brave #.................... browser
-		discord
+		unstable.discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
 		kdePackages.kcharselect #.. Tool to select and copy special characters from all installed fonts
@@ -239,6 +241,7 @@ in {
 		#texstudio #............... TeX and LaTeX editor
 		tofi #..................... Tiny dynamic menu for Wayland
 		typstwriter #.............. Editor for the typst formatting language
+		veracrypt #................ Free Open-Source filesystem on-the-fly encryption
 		vlc #...................... media player
 		zathura #.................. pdf/epub viewer
 	];
