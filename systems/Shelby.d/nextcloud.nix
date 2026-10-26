@@ -11,7 +11,7 @@
 	# ----- NEXTCLOUD -----
 	services.nextcloud = {
 		enable = true;
-		package = pkgs.nextcloud32;
+		package = pkgs.nextcloud33;
 		home = "/srv/nextcloud/data"; #.... folder for nextcloud's files
 		hostName = "nextcloud";
 		database.createLocally = true;
@@ -23,7 +23,7 @@
 		};
 		extraAppsEnable = true;
 		extraApps = {
-			inherit (config.services.nextcloud.package.packages.apps) bookmarks calendar contacts notes tasks news cookbook; #twofactor webauthn onlyoffice immich_integration
+			inherit (config.services.nextcloud.package.packages.apps) bookmarks calendar contacts notes tasks news cookbook; # onlyoffice twofactor webauthn onlyoffice immich_integration
 		};
 		#autoUpdateApps.enable = true;
 		maxUploadSize = "1000G";
@@ -32,9 +32,11 @@
 			trusted_domains = [
 				"100.65.2.3"
 				"cloud.lost-faye-wilds.duckdns.org"
+				"127.0.0.1"
 			];
 			trusted_proxies = [
 				"100.65.2.3"
+				"127.0.0.1"
 			];
 		};
 	};
