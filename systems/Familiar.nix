@@ -220,11 +220,11 @@ in {
 		#aseprite #................ pixelart and animation editor
 		#audacity #................ Sound editor with graphical UI
 		#blender #................. 3d modeling
-		calibre #...................................... Comprehensive e-book software
+		calibre #.................. Comprehensive e-book software
 		chirp #.................... Free, open-source tool for programming your amateur radio
 		cryptomator #.............. Free client-side encryption for your cloud files
 		element-desktop
-		unstable.brave #.................... browser
+		brave #.................... browser
 		unstable.discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
