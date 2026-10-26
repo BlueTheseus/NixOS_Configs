@@ -22,13 +22,14 @@ in {
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix
-		../modules/Desktops/gnome.nix
 
+		./Shelby.d/calibre-web.nix
+		./Shelby.d/desktop.nix
+		./Shelby.d/docker.nix
+		./Shelby.d/gnome.nix
 		./Shelby.d/nextcloud.nix
 		./Shelby.d/nut.nix
-		./Shelby.d/services.nix
-		./Shelby.d/desktop.nix
-		./Shelby.d/calibre-web.nix
+		./Shelby.d/samba.nix
 	];
 
 	# ----- BOOT -----
@@ -66,7 +67,7 @@ in {
 	users.users = {
 		"${USER}" = {
 			isNormalUser = true;
-			extraGroups = [ "networkmanager" "wheel" "docker" ];
+			extraGroups = [ "networkmanager" "wheel" "samba" "docker" ];
 		};
 	};
 	
@@ -85,10 +86,16 @@ in {
 	system = {
 		copySystemConfiguration = true;
 		autoUpgrade = {
-			enable = true;
-			allowReboot = true;
+			enable = false;
+			allowReboot = false; # too annoying without proper setup
 			dates = "Saturday 01:30 ${TIMEZONE}";
 		};
+	};
+	systemd.targets = {
+		sleep.enable = false;
+		suspend.enabe = false;
+		hibernate.enable = false;
+		hybrid-sleep.enable = false;
 	};
 	nix = {
 		settings = {
