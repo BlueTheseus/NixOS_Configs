@@ -19,7 +19,9 @@ let
 	USER = "nomad";
 in {
 	imports = [
-		"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+		<nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
+		<nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
+		#"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
 		../modules/Core.nix
 		../modules/ssh.nix
 	];
@@ -46,7 +48,8 @@ in {
 	networking = {
 		hostName = "${HOSTNAME}";
 		hostId = "${HOSTID}"; # for zfs -- generated with: head -c4 /dev/urandom | od -A none -t x4
-		wireless.enable = false; # Enables networking support via wpa_supplicant
+		#wireless.enable = true; # Enables networking support via wpa_supplicant
+		networkmanager.enable = true;
 		#interfaces.eth0.ipv4.addresses = [{
 			#address = "10.0.0.5";
 			#prefixLength = 24;
