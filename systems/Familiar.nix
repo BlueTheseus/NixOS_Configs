@@ -146,6 +146,7 @@ in {
 		nerd-fonts.intone-mono
 		nerd-fonts.iosevka
 		nerd-fonts.iosevka-term
+		noto-fonts-cjk-sans
 	];
 
 	# ----- EXTRA SYSTEM PACKAGES -----
@@ -222,6 +223,7 @@ in {
 		calibre #...................................... Comprehensive e-book software
 		chirp #.................... Free, open-source tool for programming your amateur radio
 		cryptomator #.............. Free client-side encryption for your cloud files
+		element-desktop
 		unstable.brave #.................... browser
 		unstable.discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
