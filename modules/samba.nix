@@ -9,7 +9,8 @@
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
 		# "d /folder/to/create <chmod-value> <user> <group>"
-		"d /srv/samba         755 root users"
+		"d /srv/samba             755 root users"
+		"d /srv/samba/usershares 1770 root samba"
 	];
 
 	# ----- SETTINGS -----
@@ -35,6 +36,9 @@
 				#"server max protocol" = "SMB3";
 				"server min protocol" = "SMB2_10";
 				"max log size" = "1000";
+				# ----- User Shares -----
+				"usershare path" = "/srv/samba/usershares";
+				"usershare max shares" = "10";
 				# ----- Apple Device Compatability -----
 				"vfs objects" = "fruit streams_xattr catia acl_xattr";
 				"fruit:aapl" = "yes";
