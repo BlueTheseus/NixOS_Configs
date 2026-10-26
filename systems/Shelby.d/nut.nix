@@ -1,5 +1,9 @@
 {config, pkgs, lib, ... }:
 {
+	# ----- SYSTEM -----
+	systemd.tmpfiles.rules = [
+		"d /srv/nut 770 root root"
+	];
 
 	# ----- UNINTERRUPTIBLE POWER SUPPLY -----
 	# https://wiki.nixos.org/wiki/Uninterruptible_power_supply
@@ -87,7 +91,7 @@
 			];
 		};
 		users."nut-admin" = {
-			passwordFile = "./ups-nut-admin-password.txt";
+			passwordFile = "/srv/nut/ups-nut-admin-password.txt";
 			actions = [ "set" "fsd" ];
 			instcmds = [ "all" ];
 			upsmon = "primary";
@@ -98,7 +102,7 @@
 				system = "nutdev-usb1@localhost";
 				powerValue = 1;
 				user = "nut-admin";
-				passwordFile = "./ups-nut-admin-password.txt";
+				passwordFile = "/srv/nut/ups-nut-admin-password.txt";
 				type = "primary";
 			};
 			settings = {
