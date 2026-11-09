@@ -24,7 +24,12 @@ in {
 		../modules/Desktops/kde-plasma.nix
 		#../modules/Desktops/cosmic.nix
 
-		./Familiar.d/services.nix
+		#./Familiar.d/services.nix
+		./Familiar.d/docker.nix
+		./Familiar.d/print-scan.nix
+		./Familiar.d/samba.nix
+		./Familiar.d/syncthing.nix
+		./Familiar.d/virtualbox.nix
 	];
 
 	# ----- BOOT -----
@@ -122,7 +127,7 @@ in {
 
 	# ----- PRINTING -----
 	# Enable CUPS to print documents.
-	services.printing.enable = true;
+	#services.printing.enable = true;
 
 	# ----- DOCUMENTATION -----
 	documentation = {
