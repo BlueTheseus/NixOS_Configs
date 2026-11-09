@@ -13,7 +13,7 @@ in {
 	# ----- ANKI SERVER -----
 	services.anki-sync-server = {
 		enable = true;
-		baseDirectory = "";
+		baseDirectory = "/srv/anki-sync-server/data";
 		port = 42050; # default: 27701
 		users = {
 			"${USER}" = {
