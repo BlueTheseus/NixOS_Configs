@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-	LISTEN_IP = "";
+	LISTEN_IP = "127.0.0.1";
 in {
 	# ----- SYSTEM -----
 	systemd.tmpfiles.rules = [
