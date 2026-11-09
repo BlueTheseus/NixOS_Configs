@@ -229,7 +229,7 @@ in {
 		chirp #.................... Free, open-source tool for programming your amateur radio
 		cryptomator #.............. Free client-side encryption for your cloud files
 		element-desktop
-		brave #.................... browser
+		unstable.brave #........... browser
 		unstable.discord
 		firefox #.................. browser -- backup for when brave won't properly render websites
 		foot #..................... wayland terminal
