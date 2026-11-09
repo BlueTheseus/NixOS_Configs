@@ -140,9 +140,11 @@ in {
 	};
 
 	# ----- EXTRA FONTS -----
+	fonts.enableDefaultPackages = true;
 	fonts.packages = with pkgs; [
 		google-fonts #...... Font files available from Google Fonts
-		noto-fonts #........ Beautiful and free fonts for many languages
+		helvetica-neue-lt-std
+		liberation_ttf
 		nerd-fonts._0xproto
 		nerd-fonts.adwaita-mono
 		nerd-fonts.blex-mono
@@ -151,7 +153,9 @@ in {
 		nerd-fonts.intone-mono
 		nerd-fonts.iosevka
 		nerd-fonts.iosevka-term
+		noto-fonts #........ Beautiful and free fonts for many languages
 		noto-fonts-cjk-sans
+		noto-fonts-color-emoji
 	];
 
 	# ----- EXTRA SYSTEM PACKAGES -----
