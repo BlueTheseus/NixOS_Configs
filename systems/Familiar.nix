@@ -62,7 +62,7 @@ in {
 	# ----- USERS -----
 	users.users."${USER}" = {
 		isNormalUser = true;
-		extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+		extraGroups = [ "networkmanager" "wheel" "video" "docker" "lpadmin" ];
 	};
 	
 	# ----- SYSTEM -----

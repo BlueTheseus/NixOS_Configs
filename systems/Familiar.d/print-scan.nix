@@ -16,6 +16,7 @@
 		nssmdns4 = true;
 		openFirewall = true; # UDP 5353
 	};
+	services.ipp-usb.enable = true;
 
 	# ----- SCANNING -----
 	environment.systemPackages = with pkgs; [
