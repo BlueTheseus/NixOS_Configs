@@ -19,8 +19,8 @@ let
 in {
 	imports = [
 		#../hardware/
-		../modules/Core.nix
-		#../modules/Desktops/kde-plasma.nix
+		../modules/system_core.nix
+		#../modules/desktops/kde-plasma.nix
 	];
 
 	# ----- BOOT -----

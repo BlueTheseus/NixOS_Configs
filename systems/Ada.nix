@@ -20,7 +20,7 @@ let
 in {
 	imports = [
 		#../hardware/pegatron_corp_2ad5.nix
-		../modules/Core.nix
+		../modules/system_core.nix
 		#../modules/Desktops/kde-plasma.nix
 		../modules/ssh.nix
 		../modules/samba.nix

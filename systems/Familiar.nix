@@ -20,9 +20,8 @@ let
 in {
 	imports = [
 		../hardware/dell-xps15-9510.nix
-		../modules/Core.nix
+		../modules/system_core.nix
 		../modules/desktops/kde-plasma.nix
-		#../modules/Desktops/cosmic.nix
 
 		#./Familiar.d/services.nix
 		./Familiar.d/docker.nix

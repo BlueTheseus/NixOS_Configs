@@ -19,7 +19,7 @@ let
 	unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in {
 	imports = [
-		../modules/Core.nix
+		../modules/system_core.nix
 		../modules/Desktops/kde-plasma.nix
 		#../modules/Desktops/cosmic.nix
 	];

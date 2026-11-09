@@ -18,7 +18,7 @@ let
 	TIMEZONE = "America/Los_Angeles";
 in {
 	imports = [
-		../modules/Core.nix
+		../modules/system_core.nix
 		../modules/ssh.nix
 		../modules/samba.nix
 		../modules/jellyfin.nix

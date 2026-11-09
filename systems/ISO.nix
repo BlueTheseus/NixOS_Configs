@@ -22,7 +22,7 @@ in {
 		<nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
 		<nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
 		#"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-		../modules/Core.nix
+		../modules/system_core.nix
 		../modules/ssh.nix
 	];
 
