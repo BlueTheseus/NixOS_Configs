@@ -243,7 +243,7 @@ in {
 		#ltspice
 		#kdePackages.merkuro #..... Merkuro is an application suite designed to make handling your emails, calendar, contacts, and tasks simple.
 		mpv #...................... video and music player
-		obsidian #................. notes
+		obsidian.override { electron = pkgs.electron_44; } #................. notes
 		obs-studio
 		prismlauncher #............ Minecraft Launcher
 		#protontricks #.............
